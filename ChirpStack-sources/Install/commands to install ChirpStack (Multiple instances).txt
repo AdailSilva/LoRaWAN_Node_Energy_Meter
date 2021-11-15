@@ -1,0 +1,628 @@
+#######################
+# Atribuir IP estático
+#######################
+
+#############################################
+# Virtual Machine: ChirpStack Gateway Bridge
+#############################################
+
+ifconfig enp0s3 inet 192.168.100.201 netmask 255.255.255.0 broadcast 192.168.100.255 up
+route add default gw 192.168.100.1 enp0s3
+
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+
+* Teste:
+ping 8.8.8.8
+
+# ou:
+
+nano /etc/netplan/00-installer-config.yaml
+
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      addresses: [192.168.100.201/24]
+      gateway4: 192.168.100.1
+      nameservers:
+        addresses: [8.8.8.8,8.8.4.4]
+  version: 2
+  renderer: networkd
+
+
+netplan try
+netplan apply
+netplan --debug apply
+systemctl restart network-manager
+systemctl restart system-networkd
+ip a
+
+
+### Commands to install ChirpStack
+
+## Install ChirpStack Gateway Bridge
+# Requirements
+
+# MQTT broker
+sudo apt -y install mosquitto
+sudo apt -y install mosquitto-clients
+
+# Install apt-transport-https and Dirmngr
+sudo apt -y install apt-transport-https dirmngr
+
+# ChirpStack Debian repository
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
+sudo echo "deb https://artifacts.chirpstack.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/chirpstack.list
+sudo apt update
+
+# Install ChirpStack Gateway Bridge
+sudo apt -y install chirpstack-gateway-bridge
+
+# Configuration
+sudo nano /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml
+
+# Starting ChirpStack Gateway Bridge
+sudo systemctl start chirpstack-gateway-bridge.service
+sudo systemctl enable chirpstack-gateway-bridge.service
+sudo systemctl status chirpstack-gateway-bridge.service
+sudo journalctl -f -n 100 -u chirpstack-gateway-bridge.service
+
+Or:
+
+init.d
+sudo /etc/init.d/chirpstack-gateway-bridge.service [start|stop|restart|status]
+
+systemd
+sudo systemctl [start|stop|restart|status] chirpstack-gateway-bridge.service
+
+# ChirpStack Gateway Bridge log output
+
+init.d
+All logs are written to /var/log/chirpstack-gateway-bridge/chirpstack-gateway-bridge.log. To view and follow this logfile:
+tail -f /var/log/chirpstack-gateway-bridge/chirpstack-gateway-bridge.log
+
+systemd
+journalctl -u chirpstack-gateway-bridge.service -f -n 50
+
+
+# View MQTT traffic all with Mosquitto Client
+mosquitto_sub -v -t "#" -h localhost -p 1883 -u "adailsilva" -P "@Hacker101"
+
+
+
+
+
+#######################
+# Atribuir IP estático
+#######################
+
+#############################################
+# Virtual Machine: ChirpStack Network Server
+#############################################
+
+ifconfig enp0s3 inet 192.168.100.202 netmask 255.255.255.0 broadcast 192.168.100.255 up
+route add default gw 192.168.100.1 enp0s3
+
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+
+* Teste:
+ping 8.8.8.8
+
+# ou:
+
+nano /etc/netplan/00-installer-config.yaml
+
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      addresses: [192.168.100.202/24]
+      gateway4: 192.168.100.1
+      nameservers:
+        addresses: [8.8.8.8,8.8.4.4]
+  version: 2
+  renderer: networkd
+
+
+netplan try
+netplan apply
+netplan --debug apply
+systemctl restart network-manager
+systemctl restart system-networkd
+ip a
+
+
+## Install ChirpStack Network Server
+# Requirements
+
+# MQTT broker
+sudo apt -y install mosquitto
+sudo apt -y install mosquitto-clients
+
+# PostgreSQL database
+sudo apt -y install postgresql
+sudo apt -y install postgresql-common
+sudo apt -y install postgresql-client
+
+# Redis database
+sudo apt -y install redis-server
+sudo apt -y install redis-tools
+
+# Install apt-transport-https and Dirmngr
+sudo apt -y install apt-transport-https dirmngr
+
+# Creating an user and database
+sudo -u postgres psql
+create role adailsilva with login password '@Hacker101';
+create database chirpstack_ns with owner adailsilva;
+\q
+
+# Testing database login
+psql -h localhost -U adailsilva -W chirpstack_ns
+\q
+
+
+
+
+
+### With Docker:
+# Install PostgreSQL and PgAdmin4 in Docker to ChirpStack
+
+docker pull postgres:latest
+docker pull dpage/pgadmin4:latest
+
+docker network create -d bridge postgres-chirpstack-network
+
+docker run --name PostgreSQL-ChirpStack --restart=always -d --network=postgres-chirpstack-network -e "POSTGRES_PASSWORD=@Hacker101" -p 5432:5432 -v /home/adailsilva/Apps/Docker/PostgreSQL-ChirpStack:/var/lib/postgresql/data postgres:latest
+
+docker run --name pgAdmin4 --restart=always -d --network=postgres-chirpstack-network -p 25432:80 -e "PGADMIN_DEFAULT_EMAIL=adail101@hotmail.com" -e "PGADMIN_DEFAULT_PASSWORD=@Hacker101" dpage/pgadmin4:latest
+
+
+Browser:
+http://localhost:25432/browser/
+
+Connection Properties:
+Name:	Docker instance
+
+Connection:
+Host
+name/address:	PostgreSQL-ChirpStack
+Port:		5432
+
+Maintenance
+database:	chirpstack_ns
+Username:	adailsilva
+Password:	@Hacker101
+Role:		adailsilva
+
+
+
+### SQL:
+
+# Create Role:
+
+-- Role: adailsilva
+-- DROP ROLE adailsilva;
+
+CREATE ROLE adailsilva WITH
+  LOGIN
+  SUPERUSER
+  INHERIT
+  CREATEDB
+  CREATEROLE
+  REPLICATION
+  ENCRYPTED PASSWORD 'md5a5d313b93f4d0468d70bd24584d63908';
+
+
+
+# Create database:
+
+-- Database: chirpstack_ns
+
+-- DROP DATABASE chirpstack_ns;
+
+CREATE DATABASE chirpstack_ns
+    WITH 
+    OWNER = adailsilva
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'en_US.utf8'
+    LC_CTYPE = 'en_US.utf8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+
+
+
+
+# ChirpStack Network Server Debian repository
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
+sudo echo "deb https://artifacts.chirpstack.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/chirpstack.list
+sudo apt update
+
+# Install ChirpStack Network Server
+sudo apt -y install chirpstack-network-server
+
+# Configuration
+sudo nano /etc/chirpstack-network-server/chirpstack-network-server.toml
+
+# Starting ChirpStack Network Server
+sudo systemctl start chirpstack-network-server.service
+sudo systemctl enable chirpstack-network-server.service
+sudo systemctl status chirpstack-network-server.service
+sudo journalctl -f -n 100 -u chirpstack-network-server.service
+
+Or:
+
+init.d
+sudo /etc/init.d/chirpstack-network-server.service [start|stop|restart|status]
+
+systemd
+sudo systemctl [start|stop|restart|status] chirpstack-network-server.service
+
+
+# ChirpStack Network Server log output
+
+init.d
+All logs are written to /var/log/chirpstack-network-server/chirpstack-network-server.log. To view and follow this logfile:
+tail -f /var/log/chirpstack-network-server/chirpstack-network-server.log
+
+systemd
+journalctl -u chirpstack-network-server.service -f -n 50
+
+
+
+# Redis configuration:
+redis-server --version
+Redis server v=5.0.7 sha=00000000:0 malloc=jemalloc-5.2.1 bits=64 build=636cde3b5c7a3923
+
+
+To get the version of Redis server:
+redis-server -v
+
+To get the version of Redis client:
+redis-cli -v
+
+
+# Log in to Redis:
+redis-cli
+127.0.0.1:6379>
+
+# Test:
+127.0.0.1:6379> PING
+PONG
+
+
+# Temporarily set the redis password:
+127.0.0.1:6379> CONFIG SET requirepass '@Hacker101'
+
+127.0.0.1:6379> QUIT
+
+
+# Permanently set the redis password
+# Setup Password using redis config file.
+
+Step 1 :
+# Open the redis config file using nano:
+sudo nano /etc/redis/redis.conf
+
+# Find the line starts with requirepass, Uncomment the line and set a new password:
+# requirepass yourpassword
+
+-to-
+
+requirepass @Hacker101
+
+QUIT -
+
+sudo reboot now
+
+
+# Test:
+redis-cli
+127.0.0.1:6379> PING
+(error) NOAUTH Authentication required.
+
+# Log in to Redis:
+127.0.0.1:6379> AUTH @Hacker101
+OK
+127.0.0.1:6379> PING
+PONG
+
+127.0.0.1:6379> QUIT
+
+redis-cli -h localhost -p 6379 -a @Hacker101 ping
+
+
+
+# MQTT test with Mosquitto:
+mosquitto_sub -v -t "#" -h localhost -p 1883 -u "adailsilva" -P "@Hacker101"
+
+
+
+
+
+#######################
+# Atribuir IP estático
+#######################
+
+#################################################
+# Virtual Machine: ChirpStack Application Server
+#################################################
+
+ifconfig enp0s3 inet 192.168.100.203 netmask 255.255.255.0 broadcast 192.168.100.255 up
+route add default gw 192.168.100.1 enp0s3
+
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+
+* Teste:
+ping 8.8.8.8
+
+# ou:
+
+nano /etc/netplan/00-installer-config.yaml
+
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      addresses: [192.168.100.203/24]
+      gateway4: 192.168.100.1
+      nameservers:
+        addresses: [8.8.8.8,8.8.4.4]
+  version: 2
+  renderer: networkd
+
+
+netplan try
+netplan apply
+netplan --debug apply
+systemctl restart network-manager
+systemctl restart system-networkd
+ip a
+
+
+## Install ChirpStack Application Server
+# Requirements
+
+# MQTT broker
+sudo apt -y install mosquitto
+sudo apt -y install mosquitto-clients
+
+# PostgreSQL database
+sudo apt -y install postgresql
+sudo apt -y install postgresql-common
+sudo apt -y install postgresql-client
+
+# Redis database
+sudo apt -y install redis-server
+sudo apt -y install redis-tools
+
+# Install apt-transport-https and Dirmngr
+sudo apt -y install apt-transport-https dirmngr
+
+# Creating an user and database
+sudo -u postgres psql
+create role adailsilva with login password '@Hacker101';
+create database chirpstack_as with owner adailsilva;
+\q
+
+# pq_trgm and hstore extension
+sudo -u postgres psql
+\c chirpstack_as
+create extension pg_trgm;
+create extension hstore;
+\q
+
+# Testing database login
+psql -h localhost -U adailsilva -W chirpstack_as
+\q
+
+
+
+
+
+### With Docker:
+# Install PostgreSQL and PgAdmin4 in Docker to ChirpStack
+
+docker pull postgres:latest
+docker pull dpage/pgadmin4:latest
+
+docker network create -d bridge postgres-chirpstack-network
+
+docker run --name PostgreSQL-ChirpStack --restart=always -d --network=postgres-chirpstack-network -e "POSTGRES_PASSWORD=@Hacker101" -p 5432:5432 -v /home/adailsilva/Apps/Docker/PostgreSQL-ChirpStack:/var/lib/postgresql/data postgres:latest
+
+docker run --name pgAdmin4 --restart=always -d --network=postgres-chirpstack-network -p 25432:80 -e "PGADMIN_DEFAULT_EMAIL=adail101@hotmail.com" -e "PGADMIN_DEFAULT_PASSWORD=@Hacker101" dpage/pgadmin4:latest
+
+
+Browser:
+http://localhost:25432/browser/
+
+Connection Properties:
+Name:	Docker instance
+
+Connection:
+Host
+name/address:	PostgreSQL-ChirpStack
+Port:		5432
+
+Maintenance
+database:	chirpstack_as
+Username:	adailsilva
+Password:	@Hacker101
+Role:		adailsilva
+
+
+
+### SQL:
+
+# Create Role:
+
+-- Role: adailsilva
+-- DROP ROLE adailsilva;
+
+CREATE ROLE adailsilva WITH
+  LOGIN
+  SUPERUSER
+  INHERIT
+  CREATEDB
+  CREATEROLE
+  REPLICATION
+  ENCRYPTED PASSWORD 'md5a5d313b93f4d0468d70bd24584d63908';
+
+
+
+# Create database:
+
+-- Database: chirpstack_as
+
+-- DROP DATABASE chirpstack_as;
+
+CREATE DATABASE chirpstack_as
+    WITH 
+    OWNER = adailsilva
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'en_US.utf8'
+    LC_CTYPE = 'en_US.utf8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+
+
+# Create pq_trgm and hstore extension
+CREATE EXTENSION pg_trgm
+CREATE EXTENSION hstore
+
+
+
+
+
+# ChirpStack Network Server Debian repository
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
+sudo echo "deb https://artifacts.chirpstack.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/chirpstack.list
+sudo apt-get update
+
+# Install ChirpStack Application Server
+sudo apt -y install chirpstack-application-server
+
+# Configuration
+sudo nano /etc/chirpstack-application-server/chirpstack-application-server.toml
+
+# An other required setting you must change is application_server.external_api.jwt_secret
+Generation and Get Key
+openssl rand -base64 32
+
+
+
+# Starting ChirpStack Application Server
+sudo systemctl start chirpstack-application-server.service
+sudo systemctl enable chirpstack-application-server.service
+sudo systemctl status chirpstack-application-server.service
+sudo journalctl -f -n 100 -u chirpstack-application-server.service
+
+Or:
+
+init.d
+sudo /etc/init.d/chirpstack-application-server.service [start|stop|restart|status]
+
+systemd
+sudo systemctl [start|stop|restart|status] chirpstack-application-server.service
+
+
+# ChirpStack Application Server log output
+
+init.d
+All logs are written to /var/log/chirpstack-application-server/chirpstack-application-server.log. To view and follow this logfile:
+tail -f /var/log/chirpstack-application-server/chirpstack-application-server.log
+
+systemd
+journalctl -u chirpstack-application-server.service -f -n 50
+
+
+# Accessing ChirpStack Application Server
+If a TLS certificate has been configured (optional), use https:// else use the http:// option (default).
+
+HTTP
+Web-interface http://localhost:8080/
+API http://localhost:8080/api
+HTTPS
+Web-interface https://localhost:8080/
+API https://localhost:8080/api
+
+
+
+# Redis configuration:
+redis-server --version
+Redis server v=5.0.7 sha=00000000:0 malloc=jemalloc-5.2.1 bits=64 build=636cde3b5c7a3923
+
+
+To get the version of Redis server:
+redis-server -v
+
+To get the version of Redis client:
+redis-cli -v
+
+
+# Log in to Redis:
+redis-cli
+127.0.0.1:6379>
+
+# Test:
+127.0.0.1:6379> PING
+PONG
+
+
+# Temporarily set the redis password:
+127.0.0.1:6379> CONFIG SET requirepass '@Hacker101'
+
+127.0.0.1:6379> QUIT
+
+
+# Permanently set the redis password
+# Setup Password using redis config file.
+
+Step 1 :
+# Open the redis config file using nano:
+sudo nano /etc/redis/redis.conf
+
+# Find the line starts with requirepass, Uncomment the line and set a new password:
+# requirepass yourpassword
+
+-to-
+
+requirepass @Hacker101
+
+QUIT -
+
+sudo reboot now
+
+
+# Test:
+redis-cli
+127.0.0.1:6379> PING
+(error) NOAUTH Authentication required.
+
+# Log in to Redis:
+127.0.0.1:6379> AUTH @Hacker101
+OK
+127.0.0.1:6379> PING
+PONG
+
+127.0.0.1:6379> QUIT
+
+redis-cli -h localhost -p 6379 -a @Hacker101 ping
+
+
+
+# MQTT test with Mosquitto:
+mosquitto_sub -v -t "#" -h localhost -p 1883 -u "adailsilva" -P "@Hacker101"
+
+
+
+
+

@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "49e78ea3-9d01-47da-9357-403f6a14051c",
+		"name": "REST-Eclipse-Pahoo-MQTT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MQTT-SEND",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"test\": \"MQTT Send\",\n    \"name\": \"AdailSilva\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8082/mqtt/send",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8082",
+					"path": [
+						"mqtt",
+						"send"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

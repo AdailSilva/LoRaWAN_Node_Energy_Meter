@@ -1,0 +1,40 @@
+[
+  {
+    "clientId": "mqttx_6b233a0a",
+    "name": "Mosquitto",
+    "protocol": "mqtt",
+    "host": "127.0.0.1",
+    "keepalive": 60,
+    "connectTimeout": 10,
+    "reconnect": false,
+    "username": "adailsilva",
+    "password": "@Hacker101",
+    "path": "/mqtt",
+    "port": 1883,
+    "ssl": false,
+    "certType": "",
+    "rejectUnauthorized": true,
+    "ca": "",
+    "cert": "",
+    "key": "",
+    "mqttVersion": "3.1.1",
+    "messages": [],
+    "unreadMessageCount": 0,
+    "client": {
+      "connected": false
+    },
+    "will": {
+      "lastWillTopic": "",
+      "lastWillPayload": "",
+      "lastWillQos": 0,
+      "lastWillRetain": false,
+      "properties": {
+        "contentType": ""
+      }
+    },
+    "clientIdWithTime": false,
+    "id": "b4a23ff7-39f1-40ff-ad52-f868f72e2fbc",
+    "clean": true,
+    "subscriptions": []
+  }
+]

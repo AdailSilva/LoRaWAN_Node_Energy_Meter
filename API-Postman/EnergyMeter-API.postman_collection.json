@@ -1,0 +1,2571 @@
+{
+	"info": {
+		"_postman_id": "a88b65c6-1def-42c8-9c27-5517ebf78047",
+		"name": "EnergyMeter-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Downlinks Requests",
+			"item": [
+				{
+					"name": "Enqueue downlink (with confirmation)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5X2lkIjoiOTk0ZjAxMjMtMGM0OS00MzE2LWFiZmUtMjU5ODdkOTY1NWYxIiwiYXVkIjoiYXMiLCJpc3MiOiJhcyIsIm5iZiI6MTYxODE2Nzg0Niwic3ViIjoiYXBpX2tleSJ9.gy6vAmkihnKjuYjiBSJZ06hRGZ2wf31l_SN0Dw9qo_o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"deviceQueueItem\": {\n      \"confirmed\": true,\n      \"data\": \"AQID\",\n      \"fPort\": 101\n   }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.1.203:8080/api/devices/f38df5e5a31e63de/queue",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"203"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"devices",
+								"f38df5e5a31e63de",
+								"queue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enqueue downlink (without confirmation)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5X2lkIjoiOTk0ZjAxMjMtMGM0OS00MzE2LWFiZmUtMjU5ODdkOTY1NWYxIiwiYXVkIjoiYXMiLCJpc3MiOiJhcyIsIm5iZiI6MTYxODE2Nzg0Niwic3ViIjoiYXBpX2tleSJ9.gy6vAmkihnKjuYjiBSJZ06hRGZ2wf31l_SN0Dw9qo_o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"deviceQueueItem\": {\n      \"confirmed\": false,\n      \"data\": \"AQID\",\n      \"fPort\": 101\n   }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.1.203:8080/api/devices/f38df5e5a31e63de/queue",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"203"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"devices",
+								"f38df5e5a31e63de",
+								"queue"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chirpstack_RawBodies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/csrawbodies",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"csrawbodies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_RawBodies{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/csrawbodies/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"csrawbodies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_ImmediatelyTimingInfoResource",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/immediatelytiminginfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"immediatelytiminginfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_ImmediatelyTimingInfoResource{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/immediatelytiminginfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"immediatelytiminginfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Locations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/locations/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"locations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Locations{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/locations/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"locations",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_LoRaModulationInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/loramodulationinfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"loramodulationinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_LoRaModulationInfo{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/loramodulationinfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"loramodulationinfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_RxInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/rxinfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"rxinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_RxInfo{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/rxinfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"rxinfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Tags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/tags",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"tags"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Tags{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/tags/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"tags",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_TxInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/txinfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"txinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_TxInfo{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/txinfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"txinfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Categories{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/categories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Permissions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/permissions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"permissions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Permissions{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/permissions/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"permissions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_People",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/people",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"people"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_People{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/people/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"people",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Registries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/registries",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"registries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Registries{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/registries/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"registries",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Users{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/users/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_CustomHeadersHttp{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/customheadershttp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"customheadershttp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_CustomHeadersHttp{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/customheadershttp/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"customheadershttp",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Gateways",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/gateways",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"gateways"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Gateways{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/gateways/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"gateways",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Metadata",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/metadata",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Metadata{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/metadata/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"metadata",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_PayloadFields",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/payloadfields",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"payloadfields"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_PayloadFields{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/payloadfields/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"payloadfields",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_RawBodies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/ttnrawbodies",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"ttnrawbodies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_RawBodies{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/ttnrawbodies/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"ttnrawbodies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_RawBodies",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicationID\": \"1\",\n    \"applicationName\": \"end_devices_au915-928\",\n    \"deviceName\": \"ttgo_tbeam\",\n    \"devEUI\": \"3mMeo+X1jfM=\",\n    \"rxInfo\": [\n        {\n            \"gatewayID\": \"uCfr//5A3MY=\",\n            \"time\": \"2021-01-12T11:51:31.168191Z\",\n            \"rssi\": -29,\n            \"loRaSNR\": 9.5,\n            \"channel\": 5,\n            \"rfChain\": 1,\n            \"board\": 0,\n            \"antenna\": 0,\n            \"location\": {\n                \"latitude\": -3.73044,\n                \"longitude\": -40.988,\n                \"altitude\": 779,\n                \"source\": \"UNKNOWN\",\n                \"accuracy\": 0\n            },\n            \"fineTimestampType\": \"NONE\",\n            \"context\": \"GLfllA==\",\n            \"uplinkID\": \"t/gUxfmsSOednAtoO3fKPQ==\",\n            \"crcStatus\": \"CRC_OK\"\n        }\n    ],\n    \"txInfo\": {\n        \"frequency\": 917800000,\n        \"modulation\": \"LORA\",\n        \"loRaModulationInfo\": {\n            \"bandwidth\": 125,\n            \"spreadingFactor\": 7,\n            \"codeRate\": \"4/5\",\n            \"polarizationInversion\": false\n        }\n    },\n    \"margin\": 7,\n    \"externalPowerSource\": false,\n    \"batteryLevelUnavailable\": true,\n    \"batteryLevel\": 0,\n    \"adr\": false,\n    \"dr\": 5,\n    \"type\": \"UPLINK_FCNT_RETRANSMISSION\",\n    \"error\": \"frame-counter did not increment\",\n    \"acknowledged\": false,\n    \"fCnt\": 1,\n    \"fPort\": 101,\n    \"data\": \"AQQUCJ0AKQAAABMAAAFEAAACWAAVAAAgngIEFAidACcAAAAHAAAAAQAAAlgACAAA71wDBBQIngAoAAAABwAAADUAAAJYAAgAADW2\",\n    \"objectJSON\": \"{\\\"alarmPhaseA\\\":0,\\\"alarmPhaseB\\\":0,\\\"alarmPhaseC\\\":0,\\\"currentPhaseA\\\":0.041,\\\"currentPhaseB\\\":0.039,\\\"currentPhaseC\\\":0.04,\\\"energyPhaseA\\\":0.324,\\\"energyPhaseB\\\":0.001,\\\"energyPhaseC\\\":0.053,\\\"frequencyPhaseA\\\":60,\\\"frequencyPhaseB\\\":60,\\\"frequencyPhaseC\\\":60,\\\"powerFactorPhaseA\\\":0.21,\\\"powerFactorPhaseB\\\":0.08,\\\"powerFactorPhaseC\\\":0.08,\\\"powerPhaseA\\\":1.9,\\\"powerPhaseB\\\":0.7,\\\"powerPhaseC\\\":0.7,\\\"voltagePhaseA\\\":220.5,\\\"voltagePhaseB\\\":220.5,\\\"voltagePhaseC\\\":220.6}\",\n    \"tags\": {\n        \"company\": \"AdailSilva IoT Solutions\",\n        \"device\": \"ESP32+RFM95W+PZEM-004T_V3.0\"\n    },\n    \"confirmedUplink\": false,\n    \"devAddr\": \"I7thKQ==\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/csrawbodies",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"csrawbodies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_ImmediatelyTimingInfoResource",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/immediatelytiminginfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"immediatelytiminginfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Locations",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"latitude\": -3.73044,\n    \"longitude\": -40.988,\n    \"altitude\": 779,\n    \"source\": \"UNKNOWN\",\n    \"accuracy\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/locations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"locations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_LoRaModulationInfo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bandwidth\": 125,\n    \"spreadingFactor\": 7,\n    \"codeRate\": \"4/5\",\n    \"polarizationInversion\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/loramodulationinfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"loramodulationinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_RxInfo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"gatewayID\": \"uCfr//5A3MY=\",\n    \"time\": \"2021-01-12T11:51:31.168191Z\",\n    \"timeSinceGPSEpoch\": null,\n    \"rssi\": -29,\n    \"loRaSNR\": 9.5,\n    \"channel\": 5,\n    \"rfChain\": 1,\n    \"board\": 0,\n    \"antenna\": 0,\n    \"location\": {\n        \"latitude\": -3.73044,\n        \"longitude\": -40.988,\n        \"altitude\": 779,\n        \"source\": \"UNKNOWN\",\n        \"accuracy\": 0\n    },\n    \"fineTimestampType\": \"NONE\",\n    \"context\": \"GLfllA==\",\n    \"uplinkID\": \"t/gUxfmsSOednAtoO3fKPQ==\",\n    \"crcStatus\": \"CRC_OK\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/rxinfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"rxinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Tags",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"company\": \"AdailSilva IoT Solutions\",\n    \"device\": \"ESP32+RFM95W+PZEM-004T_V3.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/tags",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"tags"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_TxInfo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"frequency\": 917800000,\n    \"modulation\": \"LORA\",\n    \"loRaModulationInfo\": {\n        \"bandwidth\": 125,\n        \"spreadingFactor\": 7,\n        \"codeRate\": \"4/5\",\n        \"polarizationInversion\": false\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/txinfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"txinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Categories",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"AdailSilva\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Permissions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"ROLE_CREATE_RAWBODY\",\n    \"active\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/permissions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"permissions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_People",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Adail dos Santos Silva\",\n    \"address\": {\n        \"publicPlace\": \"Rua do Abacaxi\",\n        \"addressNumber\": \"101\",\n        \"complement\": \"Próximo a praça dos três climas\",\n        \"neighborhood\": \"Brasil\",\n        \"cep\": \"62.500-000\",\n        \"city\": \"Itapipoca\",\n        \"state\": \"CE\"\n    },\n    \"active\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/people",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"people"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Registries",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Salário Mensal\",\n    \"maturitieDate\": \"01-01-2021\",\n    \"paymentDate\": \"15-12-2021\",\n    \"registryValue\": 6500.00,\n    \"observation\": \"Distribuição de lucros\",\n    \"registryType\": \"RECEITA\",\n    \"category\": {\n        \"id\": 1\n    },\n    \"person\": {\n        \"id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/registries",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"registries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Administrador\",\n    \"email\": \"admin@adailsilva.com\",\n    \"password\": \"$2a$10$F6YxpPi8AGfMwV8iw8gf3eKUG/ZagxEN9D/ojXxuMkpaJz/FdXqaS\",\n    \"active\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_CustomHeadersHttp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"header\": \"IoTEnergyMetter\",\r\n    \"value\": \"01115937359\",\r\n    \"login\": \"adail101@hotmail.com\",\r\n    \"password\": \"$2a$10$PX.wzIc/GrFiWgnR0rx6k.sI5JNMAuquPysv97cLuoLEpnCCSppRC\",\r\n    \"active\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/customheadershttp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"customheadershttp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Gateways",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"gtw_id\": \"eui-a840411b7dcc4150\",\n    \"timestamp\": 2083455420,\n    \"time\": \"2019-10-10T18:22:33.144702Z\",\n    \"channel\": 0,\n    \"rssi\": -60,\n    \"snr\": 7,\n    \"rf_chain\": 0,\n    \"latitude\": -5.04761,\n    \"longitude\": -42.7815,\n    \"altitude\": 25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/gateways",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"gateways"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Metadata",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"time\": \"2019-10-10T18:22:33.252195669Z\",\n    \"frequency\": 916.8,\n    \"modulation\": \"LORA\",\n    \"data_rate\": \"SF7BW125\",\n    \"coding_rate\": \"4/5\",\n    \"gateways\": [\n        {\n            \"gtw_id\": \"eui-a840411b7dcc4150\",\n            \"timestamp\": 2083455420,\n            \"time\": \"2019-10-10T18:22:33.144702Z\",\n            \"channel\": 0,\n            \"rssi\": -60,\n            \"snr\": 7,\n            \"rf_chain\": 0,\n            \"latitude\": -5.04761,\n            \"longitude\": -42.7815,\n            \"altitude\": 25\n        },\n        {\n            \"gtw_id\": \"eui-b827ebfffe40dcc6\",\n            \"timestamp\": 2083455420,\n            \"time\": \"2019-10-10T18:22:33.144702Z\",\n            \"channel\": 0,\n            \"rssi\": -60,\n            \"snr\": 7,\n            \"rf_chain\": 0,\n            \"latitude\": -5.04761,\n            \"longitude\": -42.7815,\n            \"altitude\": 25\n        },\n        {\n            \"gtw_id\": \"eui-b827ebfffef518e3\",\n            \"timestamp\": 2083455420,\n            \"time\": \"2019-10-10T18:22:33.144702Z\",\n            \"channel\": 0,\n            \"rssi\": -60,\n            \"snr\": 7,\n            \"rf_chain\": 0,\n            \"latitude\": -5.04761,\n            \"longitude\": -42.7815,\n            \"altitude\": 25\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/metadata",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_PayloadFields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"alarmPhaseA\": false,\n    \"alarmPhaseB\": false,\n    \"alarmPhaseC\": false,\n    \"currentPhaseA\": 0.04,\n    \"currentPhaseB\": 0.038,\n    \"currentPhaseC\": 0.04,\n    \"energyPhaseA\": 0.391,\n    \"energyPhaseB\": 0.001,\n    \"energyPhaseC\": 0.053,\n    \"frequencyPhaseA\": 60,\n    \"frequencyPhaseB\": 59,\n    \"frequencyPhaseC\": 60,\n    \"powerFactorPhaseA\": 0.21,\n    \"powerFactorPhaseB\": 0.07,\n    \"powerFactorPhaseC\": 0.08,\n    \"powerPhaseA\": 1.8,\n    \"powerPhaseB\": 0.6,\n    \"powerPhaseC\": 0.7,\n    \"voltagePhaseA\": 217,\n    \"voltagePhaseB\": 217.3,\n    \"voltagePhaseC\": 217.5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/payloadfields",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"payloadfields"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_RawBodies",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"app_id\":\"devices_au915-928\",\n   \"dev_id\":\"mote_09_d1mini_otaa\",\n   \"hardware_serial\":\"344C390D3CE9F575\",\n   \"port\":1,\n   \"counter\":1,\n   \"payload_raw\":\"QWRhaWxTaWx2YQ==\",\n   \"payload_fields\":{\n      \"alarmPhaseA\":false,\n      \"alarmPhaseB\":false,\n      \"alarmPhaseC\":false,\n      \"currentPhaseA\":0.04,\n      \"currentPhaseB\":0.038,\n      \"currentPhaseC\":0.04,\n      \"energyPhaseA\":0.391,\n      \"energyPhaseB\":0.001,\n      \"energyPhaseC\":0.053,\n      \"frequencyPhaseA\":60,\n      \"frequencyPhaseB\":59,\n      \"frequencyPhaseC\":60,\n      \"powerFactorPhaseA\":0.21,\n      \"powerFactorPhaseB\":0.07,\n      \"powerFactorPhaseC\":0.08,\n      \"powerPhaseA\":1.8,\n      \"powerPhaseB\":0.6,\n      \"powerPhaseC\":0.7,\n      \"voltagePhaseA\":217,\n      \"voltagePhaseB\":217.3,\n      \"voltagePhaseC\":217.5\n   },\n   \"metadata\":{\n      \"time\":\"2019-10-10T18:22:33.252195669Z\",\n      \"frequency\":916.8,\n      \"modulation\":\"LORA\",\n      \"data_rate\":\"SF7BW125\",\n      \"coding_rate\":\"4/5\",\n      \"gateways\":[\n         {\n            \"gtw_id\":\"eui-a840411b7dcc4150\",\n            \"timestamp\":2083455420,\n            \"time\":\"2019-10-10T18:22:33.144702Z\",\n            \"channel\":0,\n            \"rssi\":-60,\n            \"snr\":7,\n            \"rf_chain\":0,\n            \"latitude\":-5.04761,\n            \"longitude\":-42.7815,\n            \"altitude\":25\n         },\n         {\n            \"gtw_id\":\"eui-b827ebfffe40dcc6\",\n            \"timestamp\":2083455420,\n            \"time\":\"2019-10-10T18:22:33.144702Z\",\n            \"channel\":0,\n            \"rssi\":-60,\n            \"snr\":7,\n            \"rf_chain\":0,\n            \"latitude\":-5.04761,\n            \"longitude\":-42.7815,\n            \"altitude\":25\n         },\n         {\n            \"gtw_id\":\"eui-b827ebfffef518e3\",\n            \"timestamp\":2083455420,\n            \"time\":\"2019-10-10T18:22:33.144702Z\",\n            \"channel\":0,\n            \"rssi\":-60,\n            \"snr\":7,\n            \"rf_chain\":0,\n            \"latitude\":-5.04761,\n            \"longitude\":-42.7815,\n            \"altitude\":25\n         }\n      ]\n   },\n   \"downlink_url\":\"https://integrations.thethingsnetwork.org/ttn-eu/api/v2/down/devices_au915-928/uplink?key=ttn-account-v2.mjBu1zaGjfPQHCsUTkCY3gW2s-eMNJg6tz3-4fsg4hw\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/ttnrawbodies",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"ttnrawbodies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_RawBodies{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/csrawbodies/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"csrawbodies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_ImmediatelyTimingInfoResource{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/immediatelytiminginfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"immediatelytiminginfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Locations{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/locations/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"locations",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_LoRaModulationInfo{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/loramodulationinfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"loramodulationinfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_RxInfo{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/rxinfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"rxinfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Tags{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/tags/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"tags",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_TxInfo{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/txinfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"txinfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Categories{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/categories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Permissions{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/permissions/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"permissions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_People{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/people/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"people",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Registries{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/registries/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"registries",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Users{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/users/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_CustomHeadersHttp{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/customheadershttp/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"customheadershttp",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Gateways{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/gateways/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"gateways",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Metadata{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/metadata/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"metadata",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_PayloadFields{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/payloadfields/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"payloadfields",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_RawBodies{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/ttnrawbodies/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"ttnrawbodies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_RawBodies{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicationID\": \"1\",\n    \"applicationName\": \"end_devices_au915-928\",\n    \"deviceName\": \"ttgo_tbeam\",\n    \"devEUI\": \"3mMeo+X1jfM=\",\n    \"margin\": 7,\n    \"externalPowerSource\": false,\n    \"batteryLevelUnavailable\": true,\n    \"batteryLevel\": 0,\n    \"adr\": false,\n    \"dr\": 5,\n    \"type\": \"UPLINK_FCNT_RETRANSMISSION\",\n    \"error\": \"frame-counter did not increment\",\n    \"acknowledged\": false,\n    \"fCnt\": 1,\n    \"fPort\": 101,\n    \"data\": \"AQQUCJ0AKQAAABMAAAFEAAACWAAVAAAgngIEFAidACcAAAAHAAAAAQAAAlgACAAA71wDBBQIngAoAAAABwAAADUAAAJYAAgAADW2\",\n    \"objectJSON\": \"{\\\"alarmPhaseA\\\":0,\\\"alarmPhaseB\\\":0,\\\"alarmPhaseC\\\":0,\\\"currentPhaseA\\\":0.041,\\\"currentPhaseB\\\":0.039,\\\"currentPhaseC\\\":0.04,\\\"energyPhaseA\\\":0.324,\\\"energyPhaseB\\\":0.001,\\\"energyPhaseC\\\":0.053,\\\"frequencyPhaseA\\\":60,\\\"frequencyPhaseB\\\":60,\\\"frequencyPhaseC\\\":60,\\\"powerFactorPhaseA\\\":0.21,\\\"powerFactorPhaseB\\\":0.08,\\\"powerFactorPhaseC\\\":0.08,\\\"powerPhaseA\\\":1.9,\\\"powerPhaseB\\\":0.7,\\\"powerPhaseC\\\":0.7,\\\"voltagePhaseA\\\":220.5,\\\"voltagePhaseB\\\":220.5,\\\"voltagePhaseC\\\":220.6}\",\n    \"confirmedUplink\": false,\n    \"devAddr\": \"I7thKQ==\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/csrawbodies/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"csrawbodies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_ImmediatelyTimingInfoResource{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/immediatelytiminginfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"immediatelytiminginfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Locations{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"latitude\": -3.73044,\n    \"longitude\": -40.988,\n    \"altitude\": 779,\n    \"source\": \"UNKNOWN\",\n    \"accuracy\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/locations/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"locations",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_LoRaModulationInfo{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bandwidth\": 125,\n    \"spreadingFactor\": 7,\n    \"codeRate\": \"4/5\",\n    \"polarizationInversion\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/loramodulationinfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"loramodulationinfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_RxInfo{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"gatewayID\": \"uCfr//5A3MY=\",\n    \"time\": \"2021-01-12T11:51:31.168191Z\",\n    \"timeSinceGPSEpoch\": null,\n    \"rssi\": -29,\n    \"loRaSNR\": 9.5,\n    \"channel\": 5,\n    \"rfChain\": 1,\n    \"board\": 0,\n    \"antenna\": 0,\n    \"fineTimestampType\": \"NONE\",\n    \"context\": \"GLfllA==\",\n    \"uplinkID\": \"t/gUxfmsSOednAtoO3fKPQ==\",\n    \"crcStatus\": \"CRC_OK\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/rxinfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"rxinfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_Tags{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"company\": \"AdailSilva IoT Solutions\",\n    \"device\": \"ESP32+RFM95W+PZEM-004T_V3.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/tags/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"tags",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chirpstack_TxInfo{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"frequency\": 917800000,\n    \"modulation\": \"LORA\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/chirpstack/txinfo/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"chirpstack",
+						"txinfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Categories{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"AdailSilva\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/categories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Permissions{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"ROLE_CREATE_RAWBODY\",\n    \"active\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/permissions/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"permissions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Permissions{id}/active PATCH",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "true",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/permissions/1/active",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"permissions",
+						"1",
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_People{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Adail dos Santos Silva\",\n    \"active\": true,\n    \"address\": {\n        \"publicPlace\": \"Rua do Abacaxi\",\n        \"addressNumber\": \"101\",\n        \"complement\": \"Próximo a praça dos três climas\",\n        \"neighborhood\": \"Brasil\",\n        \"cep\": \"62.500-000\",\n        \"city\": \"Itapipoca\",\n        \"state\": \"CE\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/people/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"people",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_People{id}/active PATCH",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "true",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/people/1/active",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"people",
+						"1",
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Registries{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Salário Mensal\",\n    \"maturitieDate\": \"01-10-1999\",\n    \"paymentDate\": \"20-01-2011\",\n    \"registryValue\": 6500.00,\n    \"observation\": \"Distribuição de lucros\",\n    \"registryType\": \"RECEITA\",\n    \"category\": {\n        \"id\": 1\n    },\n    \"person\": {\n        \"id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/registries/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"registries",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Users{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Administrador\",\n    \"email\": \"admin@adailsilva.com\",\n    \"password\": \"$2a$10$F6YxpPi8AGfMwV8iw8gf3eKUG/ZagxEN9D/ojXxuMkpaJz/FdXqaS\",\n    \"active\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/users/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_Users{id}/active PATCH",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "true",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/users/1/active",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"users",
+						"1",
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_CustomHeadersHttp{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"header\": \"IoTEnergyMetter\",\n    \"value\": \"01115937359\",\n    \"login\": \"adail101@hotmail.com\",\n    \"password\": \"$2a$10$PX.wzIc/GrFiWgnR0rx6k.sI5JNMAuquPysv97cLuoLEpnCCSppRC\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/customheadershttp/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"customheadershttp",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System_CustomHeadersHttp{id}/active PATCH",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "true",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/system/customheadershttp/1/active",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"customheadershttp",
+						"1",
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Gateways{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"gtw_id\": \"eui-a840411b7dcc4150\",\n    \"timestamp\": 2083455420,\n    \"time\": \"2019-10-10T18:22:33.144702Z\",\n    \"channel\": 0,\n    \"rssi\": -60,\n    \"snr\": 7,\n    \"rf_chain\": 0,\n    \"latitude\": -5.04761,\n    \"longitude\": -42.7815,\n    \"altitude\": 25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/gateways/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"gateways",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_Metadata{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"time\": \"2019-10-10T18:22:33.252195669Z\",\n    \"frequency\": 916.8,\n    \"modulation\": \"LORA\",\n    \"data_rate\": \"SF7BW125\",\n    \"coding_rate\": \"4/5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/metadata/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"metadata",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_PayloadFields{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"alarmPhaseA\": false,\n    \"alarmPhaseB\": false,\n    \"alarmPhaseC\": false,\n    \"currentPhaseA\": 0.04,\n    \"currentPhaseB\": 0.038,\n    \"currentPhaseC\": 0.04,\n    \"energyPhaseA\": 0.391,\n    \"energyPhaseB\": 0.001,\n    \"energyPhaseC\": 0.053,\n    \"frequencyPhaseA\": 60,\n    \"frequencyPhaseB\": 59,\n    \"frequencyPhaseC\": 60,\n    \"powerFactorPhaseA\": 0.21,\n    \"powerFactorPhaseB\": 0.07,\n    \"powerFactorPhaseC\": 0.08,\n    \"powerPhaseA\": 1.8,\n    \"powerPhaseB\": 0.6,\n    \"powerPhaseC\": 0.7,\n    \"voltagePhaseA\": 217,\n    \"voltagePhaseB\": 217.3,\n    \"voltagePhaseC\": 217.5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/payloadfields/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"payloadfields",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TheThingsNetwork_RawBodies{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"app_id\":\"devices_au915-928\",\n   \"dev_id\":\"mote_09_d1mini_otaa\",\n   \"hardware_serial\":\"344C390D3CE9F575\",\n   \"port\":1,\n   \"counter\":1,\n   \"payload_raw\":\"QWRhaWxTaWx2YQ==\",\n   \"downlink_url\":\"https://integrations.thethingsnetwork.org/ttn-eu/api/v2/down/devices_au915-928/uplink?key=ttn-account-v2.mjBu1zaGjfPQHCsUTkCY3gW2s-eMNJg6tz3-4fsg4hw\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/thethingsnetwork/ttnrawbodies/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"thethingsnetwork",
+						"ttnrawbodies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

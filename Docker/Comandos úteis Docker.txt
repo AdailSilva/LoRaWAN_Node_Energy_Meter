@@ -1,0 +1,1037 @@
+### Comandos úteis Docker
+
+### Install Portainer in Docker:
+## Portainer Server Deployment
+
+docker volume create portainer_data
+
+docker run -d -p 8000:8000 -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+
+
+## Portainer Agent Only Deployment
+
+# Run the following command to deploy the Agent in your Docker host.
+
+docker run -d -p 9001:9001 --name Portainer_Agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent:latest
+
+
+
+
+
+Example of installing and running mysql with useful commands:
+
+Commands:
+
+Verificar versão do Docker:
+docker version
+
+Baixar imagens:
+docker pull mysql:latest
+
+Baixar imagens com versão específica:
+docket pull mysql:5.7
+
+Ver imagens baixadas:
+docker images
+
+Executar imagens:
+docker run mysql:latest
+
+Executar imagens com versão específica:
+docker run mysql:5.7
+
+
+Executar MySQL com senha, sem senha ou com Senha gerada randomicamente;
+Com senha setada:			MYSQL_ROOT_PASSWORD;
+Com senha vazia:			MYSQL_ALLOW_EMPTY_PASSWORD;
+Com senha gerada randomicamente:	MYSQL_RADOM_ROOT_PASSWORD
+	
+Neste caso setando a senha do usuário root;
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 mysql:5.7
+
+
+Para ver os contêineres dockers em execução:
+docker ps
+
+Para ver todos os contêineres dockers:
+docker ps -a
+
+
+Para parar contêineres:
+docker stop ID/Nome do contêiner
+
+Exemplo:
+docker stop mysql
+
+
+Para remover contêineres:
+docker rm ID/Nome do contêiner
+
+Forçando a parada:
+docker rm -f ID/Nome do contêiner
+
+Exemplo:
+docker rm mysql
+
+Forçando a parada:
+docker rm -f mysql
+
+
+Executar renomeando os contêineres e liberando o terminal;
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name novoNomeDoContêiner -d mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name novoNomeDoContêiner -d mysql:5.7
+
+
+Exemplo;
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d mysql:5.7
+
+
+Executar setando portas dos contêineres (Se o nome já existir renomear ou retirar o parâmetro --name);
+
+Obs: -p PortHOST:PortCONTAINER
+
+Sendo uma conexão local o Acesso pelo Workbench ou pelo Terminal será apenas com localhost ou 127.0.0.1
+Não necessitando colocar um IP parecido com um IP "externo" que é o do contêiner.
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 mysql:5.7
+
+
+Para ver informações sobre os contêineres:
+docker inspect nomeDoContêiner
+
+Exemplo:
+docker inspect MySQL
+
+Para filtrar uma informação;
+Exemplo IP do contêiner MySQL:
+ 
+docker inspect MySQL | grep IPAddress
+
+
+Acessar contêineres MySQL pelo terminal:
+mysql -u root -p @Hacker101 -h 192.168.0.101
+mysql -u adailsilva -p @Hacker101 -h 192.168.0.101
+
+
+
+UTILIZANDO VOLUMES NO DOCKER
+
+subindo um contêiner;
+Command;
+
+Executar imagens:
+docker run -d --name MySQL -e MYSQL_ROOT_PASSWORD=@Hacker101 mysql:latest
+
+Executar imagens com versão específica:
+docker run -d --name MySQL -e MYSQL_ROOT_PASSWORD=@Hacker101 mysql:5.7
+
+
+Listar volumes:
+
+docker volume ls
+
+
+Remover contêineres:
+
+docker container prune - remove todos os contêineres não usados;
+docker image prune - remove todas as imagens não usadas;
+docker volume prune - remove todos os volumes não usados;
+docker network prune - remove todas as redes não utilizadas;
+
+
+Listar redes;
+
+Command:
+docker network list
+
+Para descobrir quais containers estão associados a uma determinada rede, execute o comando abaixo:
+
+docker network inspect ID/NomeDaRede
+
+Exemplo:
+docker network inspect 3f6814cdc5cb (fazer uma listagem antes)
+
+
+Criando volumes:
+docker volume create NomeDoVolume
+
+Exemplo:
+docker volume create MySQL-Volume-DB
+
+
+Agora criar e subir um contêiner setando o volume criado anteriormente;
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v MySQL-Volume-DB:/tmp/adailsilva-volumes-docker mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v MySQL-Volume-DB:/tmp/adailsilva-volumes-docker mysql:5.7
+
+
+
+Acessando terminal do contêiner (chama-se /bin/bash mas poderia ser outro arquivo chamado, exemplo um scrip .sh ou outros tipos):
+
+Command:
+docker exec -it NomeDoContêiner /bin/bash
+
+Exemplo:
+docker exec -it MySQL /bin/bash
+
+
+
+Reflexo dos volumes no Host:
+
+sudo ls /var/lib/docker/volumes/NomeDoVolume/_data
+
+Exemplo:
+sudo ls /var/lib/docker/volumes/MySQL-Volume-DB/_data
+
+
+Conferir que os mesmos arquivos estarão tando dentro do contêiner como no diretório indicado para o host.
+
+Verificar o json de configuração com um:
+docker inspect nomeDoContêiner
+
+
+
+Criando volumes na execução do contêiner;
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v /tmp/adailsilva-volumes-docker mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v /tmp/adailsilva-volumes-docker mysql:5.7
+
+
+Criando volumes nomeados na execução do contêiner;
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v MySQL-Volume-DB:/tmp/adailsilva-volumes-docker mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v MySQL-Volume-DB:/tmp/adailsilva-volumes-docker mysql:5.7
+
+
+Outra maneira, com --mount (o comando não pode conter espaços após as vírgulas nos parâmetros do mount):
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 --mount source=mysql-db,destination=/tmp/adailsilva-volumes-docker mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 --mount source=mysql-db,destination=/tmp/adailsilva-volumes-docker mysql:5.7
+
+
+Criando volumes nomeados na execução do contêiner (somente leitura - Read Only);
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL-ReadOnly -d -p 3306:3306 --mount source=mysql-db,destination=/tmp/adailsilva-volumes-docker,readonly mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL-ReadOnly -d -p 3306:3306 --mount source=mysql-db,destination=/tmp/adailsilva-volumes-docker,readonly mysql:5.7
+
+
+
+Equivalente ao -v (volume)
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v MySQL-Volume-DB:/tmp/adailsilva-volumes-docker:ro mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v MySQL-Volume-DB:/tmp/adailsilva-volumes-docker:ro mysql:5.7
+
+
+
+
+Bind Mounts em Docker:
+
+Criar um diretório antes;
+Exemplo:
+mkdir /home/adailsilva/Apps/docker/volumes
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v ~/Apps/Docker/MySQL/:/tmp/adailsilva-volumes-docker mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL -d -p 3306:3306 -v ~/Apps/Docker/MySQL/:/tmp/adailsilva-volumes-docker mysql:5.7
+
+
+Setando outro contêiner para trabalhar com o mesmo volume (somente leitura - Read Only, há mudança de porta...):
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL-ReadOnly -d -p 3306:3306 -v ~/Apps/Docker/MySQL/:/tmp/adailsilva-volumes-docker:ro mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL-ReadOnly -d -p 3306:3306 -v ~/Apps/Docker/MySQL/:/tmp/adailsilva-volumes-docker:ro mysql:5.7
+
+
+
+O mesmo "Bind Mounts em Docker" mas agora com --mount (o comando não pode conter espaços após as vírgulas nos parâmetros do mount e o caminho de montagem deve ser absoluto);
+
+Exemplo:
+mkdir /home/adailsilva/Apps/Docker/MySQL
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL --restart=always -d -p 3306:3306 --mount type=bind,source=/home/adailsilva/Apps/Docker/MySQL/,destination=/tmp/adailsilva-volumes-docker mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL --restart=always -d -p 3306:3306 --mount type=bind,source=/home/adailsilva/Apps/Docker/MySQL/,destination=/tmp/adailsilva-volumes-docker mysql:5.7
+
+
+Fazendo o mesmo utilizando variáveis, porém tem que está interno ao diretório alvo para o "pwd" obter corretamente o caminho:
+(echo $PWD é a variável de ambiente que exibe o caminho completo de onde executamos o comando dentro do linux
+se estiver em outros diretórios pode-se ir combinando, exemplo: estando em um diretório acima "$(pwd)/diretórioAlvo", etc...)
+
+Executar imagens:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL --restart=always -d -p 3306:3306 --mount type=bind,source=$(pwd),destination=/tmp/adailsilva-volumes-docker mysql:latest
+
+Executar imagens com versão específica:
+docker run -e MYSQL_ROOT_PASSWORD=@Hacker101 --name MySQL --restart=always -d -p 3306:3306 --mount type=bind,source=$(pwd),destination=/tmp/adailsilva-volumes-docker mysql:5.7
+
+# Para Saber IP:
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' MySQL
+
+# Para entrar no Container:
+docker exec -it MySQL /bin/sh
+
+
+( Para comandos dos contêineres basta os três primeiros dígitos do ID )
+
+Exemplo:
+Para o remover o CONTAINER ID	fa47ee822b43
+
+Fica:	docker rm -f fa4
+
+Para ver os Logs:
+
+Fica:	docker logs fa4
+
+
+
+EntryPoints em Docker:
+
+Listar diretórios do contêiner
+docker run --entrypoint /bin/ls mysql
+docker run -d --entrypoint /bin/ls mysql
+
+
+Com interação no terminal (-it):
+
+docker run -it --entrypoint /bin/ls mysql
+
+( Quando o serviço é finalizado o container também é... )
+
+
+Para parar containers docker stop + (id, nome ou 3 primeiros dígitos do id)
+
+Para parar todos os containers pode ser uma lista de containers separados por espaço.
+
+
+Para iniciar o mesmo processo, porém com docker start
+
+
+Para remover mesmo processo, porém com docker rm ou docker rm -f + ID ou nome.
+
+
+Trabalhando com um comando só para as mesmas ações acima:
+
+Apenas os IDs dos containers que estão rodando
+docker ps -q
+
+Apenas os IDs dos containers de todos os containers mesmo que não estejam em execução:
+
+docker ps -qa
+
+
+Juntando comandos;
+Parando apenas os containers que estão em execução:
+
+docker stop $(docker ps -q)
+
+(adicionar o a pois é pra listar também todos os containers que estarão parados)
+docker start $(docker ps -aq)
+
+
+Para remover todos forçadamente:
+docker rm -f $(docker ps -q)
+docker rm -f $(docker ps -aq)
+
+
+Para remover imagens Docker:
+docker rmi ID/NomeDaImagem
+
+Exemplo:
+docker rmi xyz
+
+
+
+
+
+
+### MAIS SOBRE DOCKER:
+
+
+Para Saber IP de um Container Docker:
+
+A --format opção de inspect vem para o resgate.
+
+A sintaxe do cliente Docker moderno é:
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
+
+Example:
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' MySQL
+
+A sintaxe do cliente Old Docker é:
+
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' container_name_or_id
+
+Example:
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' MySQL
+
+Esses comandos retornarão o endereço IP do contêiner do Docker.
+
+Conforme mencionado nos comentários: se você estiver no Windows, use aspas duplas, em "vez de aspas simples, 'entre as chaves.
+
+
+
+Exibindo os recursos do ambiente
+
+A primeira coisa a fazer é identificar os recursos, contêiners, imagens, volumes e redes existentes no seu ambiente Docker.
+
+Para isso podemos usar os seguintes comandos :
+
+docker container ls	 Lista os contêineres que estão em execução. (docker ps)
+docker container ls -a	 Lista todos os contêineres. (docker ps -a)
+docker image ls	 Lista as imagens (docker images)
+docker volume ls	 Lista os volumes
+docker network ls	 Lista as redes
+docker info	 Lista a quantidade de contêineres e imagens e informações do ambiente
+Dessa forma temos contêineres que pode estar em execução e os que estão parados, e, temos também imagens não usadas, imagens que foram usadas para criar contêineres e imagens pendentes que não possuem relacionamento com nenhuma imagem tagueada.(as dangling images).
+
+Uma imagem não usada significa que ela não foi atribuída ou usada em um contêiner. Por outro lado, uma imagem pendente significa que você criou um novo build da imagem, mas não recebeu um novo nome.
+
+Então as velhas imagens que você tem se tornam a "imagem pendente". Essas imagens antigas são aquelas sem tag e exibem "<none>" em seu nome quando você executa o comando : docker images
+
+Removendo todos os recursos
+
+O Docker oferece um comando conveniente para remover contêineres , networks e imagens não usadas :
+
+docker system prune
+
+Este comando remove :
+
+Todos os contêineres parados
+Todas as redes não usadas pelo menos por um contâiner
+Todas as imagens pendentes (dangling images)
+Todo o cache build pendente
+
+
+Note que é solicitada a confirmação para continuar o processamento [y/N].
+
+Para remover também os volumes e imagens não utilizadas e sobrescrever o prompt de confirmação podemos usar o comando:
+
+docker system prune --all --force --volumes
+
+Este comando remove:
+
+Todos os contêineres parados
+Todas as redes não usadas pelo menos por um contâiner
+Todos os volumes não usados por pelo menos um contêiner
+Todas as imagens sem nenhum contêiner associado
+Todo o cache build pendente
+E não solicita confirmação. Portanto cuidado ao user o comando.
+
+Também podemos aplicar o comando prune a cada recurso individualmente.
+
+Assim:
+
+docker container prune - remove todos os contêineres não usados;
+docker image prune - remove todas as imagens não usadas;
+docker volume prune - remove todos os volumes não usados;
+docker network prune - remove todas as redes não utilizadas;
+Removendo recursos individualmente
+
+Outra opção é remover cada recurso individualmente. Para isso podemos usar os seguintes comandos:
+
+docker container rm <id>   ou   docker rm <id>
+docker image rm <id>         ou   docker rmi <id>
+docker volume <id>
+docker network <id>
+Remove o recurso identificado pelo <id> ou nome especificado.
+
+Para containeres, imagens e volumes temos ainda a opção -f que força a remoção do recurso.
+
+docker container rm <id> -f
+docker image rm <id> -f
+docker volume <id> -f
+Essa abordagem é mais segura, mas dependendo da quantidade de recursos, terá que ser repetida várias vezes.
+
+Podemos ainda usar uma combinação de comandos para remover mais de um recurso de uma vez.
+
+Contêineres:  docker container rm $(docker container ls -a -q)
+ 
+Imagens :      docker image rm $(docker image ls -a -q)
+ 
+Volumes :      docker volume rm $(docker volume ls -q)
+ 
+Networks :    docker network rm $(docker network ls -q)
+Onde:
+
+ -a  : signfica todos os recursos
+ -q  : significa o ID numérico do recurso
+
+Assim, para parar todos os contêineres podemos usar o comando:
+
+docker container stop $(docker container ls -a -q)
+
+E podemos também vincular dois comandos para limpar todo o ambiente:
+
+docker container stop $(docker container ls -a -q) && docker system prune -a -f --volumes
+
+Dessa forma, você têm essas opções para limpar o seu ambiente, podendo também criar scripts com combinação de comandos para serem executados automaticamente.
+
+
+
+
+
+### Mosquitto MQTT
+
+docker run -it --name EclipseMosquitto -p 1883:1883 eclipse-mosquitto:latest
+
+
+docker run -it --name EclipseMosquitto --restart=always -d --net=host --mount type=bind,source=$(pwd),destination=/tmp/adailsilva-volumes-docker eclipse-mosquitto:latest
+
+docker run -it --name EclipseMosquitto --restart=always -d --net=host --mount type=bind,source=/home/adailsilva/Apps/Docker/volumes/,destination=/tmp/adailsilva-volumes-docker eclipse-mosquitto:latest
+
+
+docker run -it --name EclipseMosquitto --restart=always -d -p 1883:1883 --mount type=bind,source=$(pwd),destination=/tmp/adailsilva-volumes-docker eclipse-mosquitto:latest
+
+docker run -it --name MosquittoDocker --restart=always -d -p 1883:1883 --mount type=bind,source=/home/adailsilva/Apps/Docker/volumes/,destination=/tmp/adailsilva-volumes-docker eclipse-mosquitto:latest
+
+
+Warning: Create the file first --> /home/adailsilva/Apps/Docker/eclipse-mosquitto/mosquitto.conf
+
+
+### Directories
+
+Three directories have been created in the image to be used for configuration, persistent storage and logs.
+
+/mosquitto/config
+/mosquitto/data
+/mosquitto/log
+
+Example:
+/home/adailsilva/Apps/Docker/eclipse-mosquitto/config
+/home/adailsilva/Apps/Docker/eclipse-mosquitto/data
+/home/adailsilva/Apps/Docker/eclipse-mosquitto/log
+
+
+# Configuration
+
+When running the image, the default configuration values are used. To use a custom configuration file, mount a local configuration file to /mosquitto/config/mosquitto.conf
+
+docker run -it -p 1883:1883 -p 9001:9001 -v mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+
+Example:
+docker run -it -p 1883:1883 -p 9001:9001 -v /home/adailsilva/Apps/Docker/eclipse-mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto:latest
+
+mkdir /home/adailsilva/Apps/Docker/eclipse-mosquitto/config/
+mkdir /home/adailsilva/Apps/Docker/eclipse-mosquitto/log/
+mkdir /home/adailsilva/Apps/Docker/eclipse-mosquitto/data/
+
+nano /home/adailsilva/Apps/Docker/eclipse-mosquitto/config/mosquitto.conf
+touch /home/adailsilva/Apps/Docker/eclipse-mosquitto/log/mosquitto.log
+touch /home/adailsilva/Apps/Docker/eclipse-mosquitto/data/mosquitto.db
+
+
+# Configuration can be changed to:
+
+    persist data to /mosquitto/data
+    log to /mosquitto/log/mosquitto.log
+
+i.e. add the following to mosquitto.conf:
+
+persistence true
+persistence_location /mosquitto/data/
+persistence_file /mosquitto/data/mosquitto.db
+log_dest file /mosquitto/log/mosquitto.log
+
+
+Example:
+
+# Configuration can be changed to:
+
+    persist data to /eclipse-mosquitto/data
+    log to /eclipse-mosquitto/log/mosquitto.log
+
+i.e. add the following to mosquitto.conf:
+
+persistence true
+persistence_location /home/adailsilva/Apps/Docker/eclipse-mosquitto/data/
+persistence_file /home/adailsilva/Apps/Docker/eclipse-mosquitto/data/mosquitto.db
+log_dest file /home/adailsilva/Apps/Docker/eclipse-mosquitto/log/mosquitto.log
+
+
+Note: If a volume is used, the data will persist between containers.
+Run
+
+Run a container using the new image:
+
+docker run -it --name EclipseMosquitto --restart=always -d -p 1883:1883 -p 9001:9001 -v mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto:latest
+
+Example:
+docker run -it --name EclipseMosquitto --restart=always -d -p 1883:1883 -p 9001:9001 -v mosquitto.conf:/home/adailsilva/Apps/Docker/eclipse-mosquitto/config/mosquitto.conf -v /home/adailsilva/Apps/Docker/eclipse-mosquitto/data -v /home/adailsilva/Apps/Docker/eclipse-mosquitto/log eclipse-mosquitto:latest
+
+Note: if the mosquitto configuration (mosquitto.conf) was modified to use non-default ports, the docker run command will need to be updated to expose the ports that have been configured.
+
+# Para Saber IP:
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' MosquittoDocker
+
+# Para entrar no Container:
+docker exec -it EclipseMosquitto /bin/sh
+
+
+
+## Practice example:
+sudo docker run -itd \
+--name=EclipseMosquitto \
+--restart=always \
+--net=host \
+-v ~/Apps/Docker/eclipse-mosquitto-mqtt/config:/mqtt/config:ro \
+-v ~/Apps/Docker/eclipse-mosquitto-mqtt/data:/mqtt/data \
+-v ~/Apps/Docker/eclipse-mosquitto-mqtt/log:/mqtt/log \
+eclipse-mosquitto:latest
+
+
+
+
+
+## With Docker-Compose:
+
+Container UP:
+docker-compose build
+docker-compose up
+docker-compose up -d
+
+Or:
+docker-compose up --build -d
+
+And:
+docker-compose --compatibility up -d
+
+
+# MQTT Broker
+
+Create MQTT broker. It’s responsible for receiving, filtering and publishing messages to subscribed clients. It serves for receiving information from LoRaWAN devices and for sending commands to the devices.
+
+I’ve chosen Eclipse Mosquitto which is a lightweight open source MQTT broker. First off, let’s create a folder structure:
+
+ls -alht /home/adailsilva/Apps/Docker/eclipse-mosquitto/
+
+total 44K
+drwxrwxr-x 5 adailsilva adailsilva 4,0K mar 18 20:12 .
+drwxrwxr-x 2 adailsilva adailsilva 4,0K mar 18 20:12 log
+drwxrwxr-x 2 adailsilva adailsilva 4,0K mar 18 20:12 data
+-rwxr-xr-x 1 adailsilva adailsilva  220 mar 18 19:50 restart.sh
+drwxrwxr-x 2 adailsilva adailsilva 4,0K mar 18 19:47 config
+drwxrwxrwx 7 adailsilva adailsilva 4,0K mar 18 19:45 ..
+-rw-rw-r-- 1 adailsilva adailsilva  279 mar 18 19:30 Dockerfile
+-rw-rw-r-- 1 adailsilva adailsilva  530 mar 18 19:29 docker-compose.yml
+-rw-rw-r-- 1 adailsilva adailsilva   85 mar 18 19:25 .env
+-rwxr-xr-x 1 adailsilva adailsilva  794 jan 10 09:19 docker-entrypoint.sh
+-rw-rw-r-- 1 adailsilva adailsilva 1,5K jan 10 09:19 README.md
+
+
+
+Initially, I’ve left mosquitto.conf file without any change, but after a while I uncommented parameters regarding persistence and logging:
+
+# 1 --> Create mosquitto.conf
+sudo nano /home/adailsilva/Apps/Docker/eclipse-mosquitto/config/mosquitto.conf
+
+# Insert:
+pid_file /var/run/mosquitto/mosquitto.pid
+
+persistence true
+persistence_location /mosquitto/data/
+
+#user mosquitto
+
+# Port to use for the default listener.
+port 1883
+
+log_dest file /mosquitto/log/mosquitto.log
+log_dest stdout
+
+allow_anonymous false
+password_file passwordfile
+
+
+
+# 2 --> Create docker-compose.yml
+sudo nano /home/adailsilva/Apps/Docker/eclipse-mosquitto/docker-compose.yml
+
+# Insert:
+version: '3'
+
+services:
+
+  # Eclipse Mosquitto MQTT Broker
+  mosquitto:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - MOSQUITTO_VERSION=${MOSQUITTO_VERSION:-latest}
+    environment:
+      - MOSQUITTO_USERNAME=${MOSQUITTO_USERNAME}
+      - MOSQUITTO_PASSWORD=${MOSQUITTO_PASSWORD}
+    image: eclipse-mosquitto:${MOSQUITTO_VERSION:-latest}
+    container_name: EclipseMosquitto
+    restart: always
+    volumes:
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
+    ports:
+      - 1883:1883
+
+
+
+# 3 --> Create docker-entrypoint.sh
+sudo nano /home/adailsilva/Apps/Docker/eclipse-mosquitto/docker-entrypoint.sh
+
+# Insert:
+#!/bin/ash
+
+set -e
+
+# Fix write permissions for mosquitto directories
+chown --no-dereference --recursive mosquitto /mosquitto/log
+chown --no-dereference --recursive mosquitto /mosquitto/data
+
+mkdir -p /var/run/mosquitto \
+  && chown --no-dereference --recursive mosquitto /var/run/mosquitto
+
+# Adjust configuration to support Mosquitto 2.x
+if [ $(echo $VERSION | cut -d "." -f1) -gt 1 ]; then
+  # Use 'listener' instead of 'port'
+  sed -i "s/port 1883/listener 1883/g" /mosquitto/config/mosquitto.conf
+fi
+
+if ( [ -z "${MOSQUITTO_USERNAME}" ] || [ -z "${MOSQUITTO_PASSWORD}" ] ); then
+  echo "MOSQUITTO_USERNAME or MOSQUITTO_PASSWORD not defined"
+  exit 1
+fi
+
+# create mosquitto passwordfile
+touch passwordfile
+mosquitto_passwd -b passwordfile $MOSQUITTO_USERNAME $MOSQUITTO_PASSWORD
+
+exec "$@"
+
+
+
+sudo chmod +x /home/adailsilva/Apps/Docker/eclipse-mosquitto/docker-entrypoint.sh
+
+
+# 4 --> Create data directory (Não é necessário)
+mkdir /home/adailsilva/Apps/Docker/eclipse-mosquitto/data
+sudo chmod o+w /home/adailsilva/Apps/Docker/eclipse-mosquitto/data
+sudo chown 1883:1883 /home/adailsilva/Apps/Docker/eclipse-mosquitto/data -R
+
+
+# 5 --> create logs directory (Não é necessário)
+mkdir /home/adailsilva/Apps/Docker/eclipse-mosquitto/log
+sudo touch /home/adailsilva/Apps/Docker/eclipse-mosquitto/log/mosquitto.log
+sudo chmod o+w /home/adailsilva/Apps/Docker/eclipse-mosquitto/log
+sudo chmod o+w /home/adailsilva/Apps/Docker/eclipse-mosquitto/log/mosquitto.log
+sudo chown 1883:1883 /home/adailsilva/Apps/Docker/eclipse-mosquitto/log -R
+
+sudo touch /home/adailsilva/Apps/Docker/eclipse-mosquitto/data/mosquitto.db
+sudo chmod o+w /home/adailsilva/Apps/Docker/eclipse-mosquitto/data
+sudo chmod o+w /home/adailsilva/Apps/Docker/eclipse-mosquitto/data/mosquitto.db
+sudo chown 1883:1883 /home/adailsilva/Apps/Docker/eclipse-mosquitto/data -R
+
+sudo chown 1883:1883 /home/adailsilva/Apps/Docker/eclipse-mosquitto/
+
+
+
+# 6 --> Create Dockerfile
+sudo nano /home/adailsilva/Apps/Docker/eclipse-mosquitto/Dockerfile
+
+# Insert:
+ARG MOSQUITTO_VERSION
+FROM eclipse-mosquitto:${MOSQUITTO_VERSION:-latest}
+
+COPY config/mosquitto.conf /mosquitto/config/mosquitto.conf
+COPY docker-entrypoint.sh /
+
+ENTRYPOINT ["sh", "./docker-entrypoint.sh"]
+
+CMD ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
+
+
+
+# 7 --> Create .env
+# --> .env
+sudo nano /home/adailsilva/Apps/Docker/eclipse-mosquitto/.env
+
+# Insert:
+MOSQUITTO_USERNAME=adailsilva
+MOSQUITTO_PASSWORD=@Hacker101
+MOSQUITTO_VERSION=latest
+
+
+
+# 8 --> Create restart.sh
+# I also created bash script restart with following content:
+
+sudo nano /home/adailsilva/Apps/Docker/eclipse-mosquitto/restart.sh
+
+#!/bin/bash
+
+start=`date +%s`
+echo "Running restart..."docker-compose --compatibility down && docker-compose --compatibility up -d
+
+end=`date +%s`
+echo -e "\nScript has reached its end after: " $((end-start)) " seconds"
+
+
+Set Permission:
+sudo chmod +x /home/adailsilva/Apps/Docker/eclipse-mosquitto/restart.sh
+
+
+
+### Build and run
+cd /home/adailsilva/Apps/Docker/eclipse-mosquitto/
+docker-compose build
+docker-compose up -d
+
+Or:
+docker-compose up --build -d
+
+
+Thanks to the compatibility parameter, we may apply a memory limit defined in docker-compose.yml.
+
+Now, we let’s start our first service via restart script:
+
+cd /home/adailsilva/Apps/Docker/eclipse-mosquitto/
+./restart.sh
+
+or:
+
+/home/adailsilva/Apps/Docker/eclipse-mosquitto/./restart.sh
+
+You should see the docker container running.
+
+
+Command for conference in Docker:
+
+docker ps
+
+and/or:
+
+docker ps -a
+
+# Command to Log into Container:
+
+docker exec -it EclipseMosquitto /bin/sh
+
+# Tests:
+  *   
+  *   ### Mosquitto in Terminal:
+  *   
+  *   (Identical topics)
+  *   mosquitto_sub -h localhost -p 1883 -t "/topic/energymetter" -u "adailsilva" -P "@Hacker101"
+  *   mosquitto_pub -h localhost -p 1883 -t "/topic/energymetter" -m "AdailSilva" -u "adailsilva" -P "@Hacker101"
+  *   
+  *   (Different topics, subscribe to the publisher and publish to the subscriber, used in WATT METER JE05 - Rev 03.00 )
+  *   mosquitto_sub -h localhost -p 1883 -t "/topic/pub/energymetter" -u "adailsilva" -P "@Hacker101"
+  *   mosquitto_pub -h localhost -p 1883 -t "/topic/sub/energymetter" -u "adailsilva" -P "@Hacker101"
+  *   
+  *   ### Mosquitto in Terminal to ChirpStack:  (SUBSCRIBE)
+  *   mosquitto_sub -t "application/123/#" -v                  # Display everything for the given application ID
+  *   mosquitto_sub -t "application/123/device/+/event/up" -v  # Display only the uplink payloads for the given application ID
+  *   
+  *   Any device event:
+  *   mosquitto_sub -t "application/2/#" -h localhost -p 1883 -u "adailsilva" -P "@Hacker101" -v
+  *   mosquitto_sub -t "application/2/device/+/event/#" -h localhost -p 1883 -u "adailsilva" -P "@Hacker101" -v
+
+
+
+
+
+# Install PostgreSQL and PgAdmin4 in Docker
+
+docker pull postgres:latest
+docker pull dpage/pgadmin4:latest
+
+docker network create -d bridge postgres-network
+
+docker run --name PostgreSQL --restart=always -d --network=postgres-network -e POSTGRES_USER=adailsilva -e POSTGRES_PASSWORD=@Hacker101 -e POSTGRES_DB=postgres -p 5432:5432 -v /home/adailsilva/Apps/Docker/PostgreSQL:/var/lib/postgresql/data postgres:latest
+
+docker run --name pgAdmin4 --restart=always -d --network=postgres-network -p 25432:80 -e "PGADMIN_DEFAULT_EMAIL=adail101@hotmail.com" -e "PGADMIN_DEFAULT_PASSWORD=@Hacker101" dpage/pgadmin4:latest
+
+
+Browser:
+http://127.0.0.1:25432/browser/
+http://localhost:25432/browser/
+
+Connection Properties:
+Name:		Docker instance
+
+Connection:
+Host
+name/address:	PostgreSQL
+Port:		5432
+Maintenance
+database:	postgres
+Username:	postgres
+Password:	@Hacker101
+Role:		postgres
+
+
+
+
+
+# Install Redis in Docker
+
+docker-compose.yaml
+
+version: '3'
+
+services:
+  redis:
+    image: redis:latest
+    command: redis-server --requirepass @Hacker101
+    container_name: Redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+
+### Build and run
+cd /home/adailsilva/Apps/Docker/redis/
+docker-compose build
+docker-compose up -d
+
+Or:
+docker-compose up --build -d
+
+
+
+
+
+# MySQL infrastructure with Fat Jar in Docker
+
+Dockerfile
+
+## Example 1. Dockerfile:
+#FROM openjdk:8-jdk-alpine
+#ARG JAR_FILE=target/IoTEnergyMeter-1.0.0.jar
+#COPY ${JAR_FILE} IoTEnergyMeter-1.0.0.jar
+#ENTRYPOINT ["java","-jar","/IoTEnergyMeter-1.0.0.jar"]
+
+## Example 2. Dockerfile
+#FROM openjdk:8-jdk-alpine
+#RUN addgroup -S spring && adduser -S spring -G spring
+#USER spring:spring
+#ARG JAR_FILE=target/IoTEnergyMeter-1.0.0.jar
+#COPY ${JAR_FILE} IoTEnergyMeter-1.0.0.jar
+#ENTRYPOINT ["java","-jar","/IoTEnergyMeter-1.0.0.jar"]
+
+## Default Example. Dockerfile
+FROM openjdk:8-jre-alpine
+EXPOSE 8081
+WORKDIR /api
+ARG JAR_FILE=target/IoTEnergyMeter-1.0.0.jar
+COPY ${JAR_FILE} IoTEnergyMeter-1.0.0.jar
+ENTRYPOINT [ "java", "-jar", "IoTEnergyMeter-1.0.0.jar" ]
+
+
+
+docker-compose.yaml
+
+version: '3.3'
+
+services:
+    # Service 1: definition of mysql database;
+    db:
+      image: mysql:latest
+      container_name: mysql-iotenergymeter
+      environment:
+#        - MYSQL_ALLOW_EMPTY_PASSWORD
+#        - MYSQL_RANDOM_ROOT_PASSWORD
+        - MYSQL_ROOT_PASSWORD=Hacker101
+#        - MYSQL_USER=root
+
+      ports:
+        - "3306:3306"
+      restart: always
+      
+    
+    # Service 2: definition of phpMyAdmin;
+    phpmyadmin:
+      image: phpmyadmin:latest
+      container_name: phpmyadmin-iotenergymeter
+      ports:
+        - "8082:80"
+      restart: always
+        
+      depends_on:
+        - db
+      environment:
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: Hacker101
+    
+    
+    # Service 3: definition of your spring-boot app.
+    customerservice:                        # It is just a name, which will be used only in this file.
+      image: iotenergymeter-service         # Name of the image after dockerfile executes
+      container_name: iotenergymeter-api    # Name of the container created from docker image
+      build:
+        context: .                          # Docker file path (. means root directory)
+        dockerfile: Dockerfile              # Docker file name
+      ports:
+        - "8081:8081"                       # Docker containter port with your os port
+      restart: always
+        
+      depends_on:                           # Define dependencies of this app
+        - db                                # Dependency name (which is defined with this name 'db' in this file earlier)
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-iotenergymeter:3306/iotenergymeterapi?createDatabaseIfNotExist=TRUE&autoReconnect=TRUE&useSSL=FALSE&allowPublicKeyRetrieval=TRUE&useUnicode=YES&characterEncoding=UTF-8
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: Hacker101
+
+# To Run:
+# mnv clean
+# ./mvnw clean
+# mvn install -DskipTests
+# ./mvnw install -DskipTests
+# 
+# Or:
+# mvn clean package
+# 
+# And:
+# docker-compose up --build
+# 
+# Or:
+# docker-compose up --build -d
+

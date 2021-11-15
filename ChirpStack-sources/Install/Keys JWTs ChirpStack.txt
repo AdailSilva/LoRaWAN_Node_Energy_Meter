@@ -1,0 +1,27 @@
+Keys JWTs ChirpStack
+
+API key ID
+1875e47a-8e5d-4636-9ae2-c7592e826810
+
+API key name
+Global API key - API key name AdailSilvaIoT
+
+Token
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5X2lkIjoiMTg3NWU0N2EtOGU1ZC00NjM2LTlhZTItYzc1OTJlODI2ODEwIiwiYXVkIjoiYXMiLCJpc3MiOiJhcyIsIm5iZiI6MTYyMzQ2OTUzNywic3ViIjoiYXBpX2tleSJ9.Gv1lZ1KBvNWceDmtKwVVI5h-qklg7FLa2cw9Nlu4
+
+Use this token when making API request with this API key. This token is provided once.
+
+
+
+
+
+API key ID
+6d9b50b4-83e3-43d5-aad6-ddad29bb57b0
+
+API key name
+Organization API key - API key name AdailSilvaIoT
+
+Token
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5X2lkIjoiNmQ5YjUwYjQtODNlMy00M2Q1LWFhZDYtZGRhZDI5YmI1N2IwIiwiYXVkIjoiYXMiLCJpc3MiOiJhcyIsIm5iZiI6MTYyMzQ2OTY0MCwic3ViIjoiYXBpX2tleSJ9.QboUFP4f51ABApRrwODzJpD80nzvJ08EhdlmVSG6uZ0
+
+Use this token when making API request with this API key. This token is provided once.

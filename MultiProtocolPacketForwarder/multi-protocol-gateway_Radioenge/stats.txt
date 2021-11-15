@@ -1,0 +1,119 @@
+{
+    "servers": [
+        {
+            "name": "localhost",
+            "found": true,
+            "last_seen": 18246
+        },
+        {
+            "name": "192.168.1.201",
+            "found": true,
+            "last_seen": 11432
+        },
+        {
+            "name": "thethings.meshed.com.au",
+            "found": true,
+            "last_seen": 18246
+        },
+        {
+            "name": "coder.local",
+            "found": true,
+            "last_seen": 18246
+        }
+    ],
+    "time": "2021-04-07T21:02:17Z",
+    "device": {
+        "id": "B827EBFFFE40DCC6",
+        "up_active": true,
+        "down_active": true,
+        "latitude": -3.7303775,
+        "longitude": -40.987989,
+        "altitude": 787,
+        "uptime": 18246,
+        "gps": "locked",
+        "platform": "Radioenge",
+        "email": "adail101@hotmail.com",
+        "description": "Radioenge RPi3-RD43HATGPS (Multi Channel)"
+    },
+    "current": {
+        "up_radio_packets_received": 1,
+        "up_radio_packets_crc_good": 1,
+        "up_radio_packets_crc_bad": 0,
+        "up_radio_packets_crc_absent": 0,
+        "up_radio_packets_dropped": 0,
+        "up_radio_packets_forwarded": 1,
+        "up_server_datagrams_send": [
+            2,
+            2,
+            2,
+            2
+        ],
+        "up_server_datagrams_acknowledged": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "down_heartbeat_send": [
+            3,
+            3,
+            3,
+            3
+        ],
+        "down_heartbeat_received": [
+            0,
+            0,
+            3,
+            0
+        ],
+        "down_server_datagrams_received": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "down_server_datagrams_accepted": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "down_radio_packets_succes": 0,
+        "down_radio_packets_failure": 0,
+        "down_radio_packets_collision_packet": 0,
+        "down_radio_packets_collision_beacon": 0,
+        "down_radio_packets_too_early": 0,
+        "down_radio_packets_too_late": 0,
+        "down_beacon_packets_queued": 0,
+        "down_beacon_packets_send": 0,
+        "down_beacon_packets_rejected": 0
+    },
+    "performance": {
+        "up_radio_packet_quality": 1,
+        "up_server_datagram_quality": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "down_server_heartbeat_quality": [
+            0,
+            0,
+            1,
+            0
+        ],
+        "down_server_datagram_quality": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "down_radio_packet_quality": [
+            0,
+            0,
+            1,
+            0
+        ],
+        "down_beacon_packet_quality": 0
+    }
+}

@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "5aceb1a1-7964-4c50-9875-e1a9495821c5",
+		"name": "Ngrok-Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "On ngrok",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/system/ngrok/on",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"ngrok",
+						"on"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Off ngrok",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/system/ngrok/off",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"system",
+						"ngrok",
+						"off"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,783 @@
+# Pre-configuration of the operating system (Ubuntu):
+(Do this configuration on all machines that will be used to compile the source codes)
+sudo passwd root
+
+su -
+
+apt update && apt -y upgrade
+
+exit
+
+(Install the prerequisites on all machines that will be used to compile the source codes)
+sudo apt -y install git
+sudo apt -y install zip
+sudo apt -y install unzip
+sudo apt -y install nmap
+sudo apt -y install tcpdump
+sudo apt -y install net-tools
+sudo apt -y install autoconf
+sudo apt -y install automake
+sudo apt -y install libtool
+sudo apt -y install g++
+sudo apt -y install make
+sudo apt -y install curl
+sudo apt -y install nodejs
+sudo apt -y install npm
+sudo apt -y install mosquitto
+sudo apt -y install mosquitto-clients
+sudo apt -y install apt-transport-https dirmngr
+sudo apt -y install postgresql
+sudo apt -y install postgresql-common
+sudo apt -y install postgresql-client
+sudo apt -y install redis-server
+sudo apt -y install redis-tools
+
+
+# Short command:
+sudo apt -y install git zip unzip nmap tcpdump net-tools autoconf automake libtool g++ make curl nodejs npm mosquitto mosquitto-clients apt-transport-https dirmngr postgresql postgresql-common postgresql-client redis-server redis-tools
+
+
+# Installing Go Language in Ubuntu:
+
+We will be installing the latest version of Go which is 1.16.5. To download the latest version, go to the official download page and grab the tarball or use the following wget command to download it on the terminal.
+
+sudo wget https://golang.org/dl/go1.16.5.linux-amd64.tar.gz
+
+
+To Raspbian ARMv6 and ARMv7 (armv6l and armv7l):
+sudo wget https://golang.org/dl/go1.16.5.linux-armv6l.tar.gz
+
+To Raspbian ARMv8 (armv8l):
+sudo wget https://golang.org/dl/go1.16.5.linux-arm64.tar.gz
+
+
+Next, extract the tarball to /usr/local directory.
+
+sudo tar -C /usr/local -xzf go1.16.5.linux-amd64.tar.gz
+
+To Raspbian ARMv6 (armv6l):
+sudo tar -C /usr/local -xzf go1.16.5.linux-armv6l.tar.gz
+
+To Raspbian ARMv8 (armv8l):
+sudo tar -C /usr/local -xzf go1.16.5.linux-arm64.tar.gz
+
+Add the go binary path to .bashrc file /etc/profile (for a system-wide installation).
+
+sudo nano /etc/profile
+
+Add at the end of the file:
+export PATH=$PATH:/usr/local/go/bin
+
+After adding the PATH environment variable, you need to apply changes immediately by running the following command.
+source ~/.bashrc
+
+sudo reboot now
+
+ssh adailsilva@192.168.1.101
+
+Now verify the installation by simply running the go version in the terminal.
+go version
+
+
+
+# Site for additional configuration:
+https://golang.org/doc/gopath_code
+
+The GOPATH environment variable:
+
+The GOPATH environment variable specifies the location of your workspace. It defaults to a directory named go inside your home directory, so $HOME/go on Unix, $home/go on Plan 9, and %USERPROFILE%\go (usually C:\Users\YourName\go) on Windows.
+
+If you would like to work in a different location, you will need to set GOPATH to the path to that directory. (Another common setup is to set GOPATH=$HOME.) Note that GOPATH must not be the same path as your Go installation.
+
+The command go env GOPATH prints the effective current GOPATH; it prints the default location if the environment variable is unset.
+
+For convenience, add the workspace's bin subdirectory to your PATH: 
+
+export PATH=$PATH:$(go env GOPATH)/bin
+
+{Add the go binary path to .bashrc file /etc/profile (for a system-wide installation).}
+
+sudo nano /etc/profile
+
+Add at the end of the file:
+export PATH=$PATH:$(go env GOPATH)/bin
+
+After adding the PATH environment variable, you need to apply changes immediately by running the following command.
+source ~/.bashrc
+
+sudo reboot now
+
+ssh adailsilva@192.168.1.101
+
+Now verify the installation by simply running the go version in the terminal.
+go version
+
+
+
+
+
+# ChirpStack requirements for building each module separately:
+
+All source-code is hosted on GitHub:
+
+git clone https://github.com/brocaar/chirpstack-gateway-bridge.git
+git clone https://github.com/brocaar/chirpstack-network-server.git
+git clone https://github.com/brocaar/chirpstack-application-server.git
+git clone https://github.com/brocaar/chirpstack-gateway-os.git
+git clone https://github.com/brocaar/lorawan.git
+
+# Short command:
+git clone https://github.com/brocaar/chirpstack-gateway-bridge.git && \
+git clone https://github.com/brocaar/chirpstack-network-server.git && \
+git clone https://github.com/brocaar/chirpstack-application-server.git && \
+git clone https://github.com/brocaar/chirpstack-gateway-os.git && \
+git clone https://github.com/brocaar/lorawan.git
+
+
+
+# Installation and configuration:
+
+### Gateway Bridge
+
+Source
+
+Source-code can be found at https://github.com/brocaar/chirpstack-gateway-bridge.
+
+git clone https://github.com/brocaar/chirpstack-gateway-bridge.git
+
+mkdir ~/Apps
+cd Apps/
+mkdir ChirpStack
+mv ~/chirpstack-gateway-bridge ~/Apps/ChirpStack/
+cd ~/Apps/ChirpStack/chirpstack-gateway-bridge/
+
+
+## Building
+
+
+# With Docker
+
+The easiest way to get started is by using the provided docker-compose environment. To start a bash shell within the docker-compose environment, execute the following command from the root of this project:
+
+docker-compose run --rm chirpstack-gateway-bridge bash
+
+
+## Without Docker
+
+It is possible to build ChirpStack Gateway Bridge without Docker. However this requires to install a couple of dependencies (depending your platform, there might be pre-compiled packages available):
+
+
+# Go
+Make sure you have Go installed (1.11+). As ChirpStack Gateway Bridge, the repository must be cloned outside the $GOPATH.
+
+
+cd ~/Apps/ChirpStack/chirpstack-gateway-bridge/
+
+
+# Copying the configuration file for use after compilation
+scp /home/adailsilva/Apps/ChirpStack/configuration_files_for_AU915/chirpstack-gateway-bridge.toml adailsilva@192.168.1.2:/home/adailsilva/Apps/ChirpStack/chirpstack-gateway-bridge/
+
+
+# Configuration
+sudo nano /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml
+
+
+# Example commands
+
+A few example commands that you can run:
+
+# install development requirements
+make dev-requirements
+
+# cleanup workspace
+make clean
+
+# run the tests
+make test
+
+# compile
+make build
+
+# compile snapshot for supported architectures (using goreleaser)
+make snapshot
+
+
+
+sudo chmod +x /home/adailsilva/Apps/ChirpStack/chirpstack-gateway-bridge/build/chirpstack-gateway-bridge
+
+
+Create script for service:
+[SCRIPT]
+sudo nano /etc/systemd/system/chirpstack-gateway-bridge.service
+
+To add:
+[Unit]
+Description=ChirpStack Gateway Bridge abstracts Packet Forwarder protocols into Protobuf or JSON over MQTT.
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+ExecStart=/home/adailsilva/Apps/ChirpStack/chirpstack-gateway-bridge/build/chirpstack-gateway-bridge
+WorkingDirectory=/home/adailsilva/Apps/ChirpStack/chirpstack-gateway-bridge/build
+User=adailsilva
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=%n
+
+[Install]
+WantedBy=multi-user.target
+
+
+# Change service file owner:
+sudo chown root:root /etc/systemd/system/chirpstack-gateway-bridge.service
+sudo chmod 644 /etc/systemd/system/chirpstack-gateway-bridge.service
+
+
+# Restart Systemd
+sudo systemctl daemon-reload
+
+
+# Control of the created service:
+# Starting ChirpStack Gateway Bridge
+sudo systemctl start chirpstack-gateway-bridge.service
+sudo systemctl enable chirpstack-gateway-bridge.service
+sudo systemctl status chirpstack-gateway-bridge.service
+sudo journalctl -f -n 100 -u chirpstack-gateway-bridge.service
+
+Or:
+
+init.d
+sudo /etc/init.d/chirpstack-gateway-bridge.service [start|stop|restart|status]
+
+systemd
+sudo systemctl [start|stop|restart|status] chirpstack-gateway-bridge.service
+
+# ChirpStack Gateway Bridge log output
+
+init.d
+All logs are written to /var/log/chirpstack-gateway-bridge/chirpstack-gateway-bridge.log. To view and follow this logfile:
+tail -f /var/log/chirpstack-gateway-bridge/chirpstack-gateway-bridge.log
+
+systemd
+journalctl -u chirpstack-gateway-bridge.service -f -n 50
+
+
+sudo tail -f /var/log/syslog
+
+
+# View MQTT traffic all with Mosquitto Client
+mosquitto_sub -v -t "#" -h localhost -p 1883 -u "adailsilva" -P "@Hacker101"
+
+
+
+
+
+### Network Server
+
+Source
+
+Source-code can be found at https://github.com/brocaar/chirpstack-network-server.
+
+git clone https://github.com/brocaar/chirpstack-network-server.git
+
+mkdir ~/Apps
+cd Apps/
+mkdir ChirpStack
+mv ~/chirpstack-network-server ~/Apps/ChirpStack/
+cd ~/Apps/ChirpStack/chirpstack-network-server/
+
+
+## Building
+
+
+# With Docker
+
+The easiest way to get started is by using the provided Docker Compose environment. To start a bash shell within the Docker Compose environment, execute the following command from the root of this project:
+
+docker-compose run --rm chirpstack-network-server bash
+
+
+# Without Docker
+
+It is possible to build ChirpStack Network Server without Docker. However this requires to install a couple of dependencies (depending your platform, there might be pre-compiled packages available):
+
+
+# Go
+Make sure you have Go installed (1.11+) as ChirpStack Network Server uses Go modules, the repository must be cloned outside $GOPATH.
+
+
+# Go protocol buffer support
+Install the C++ implementation of protocol buffers and Go support by following the Go support for Protocol Buffers Installation instructions.
+
+
+cd ~/Apps/ChirpStack/chirpstack-network-server/
+
+
+# Copying the configuration file for use after compilation
+scp /home/adailsilva/Apps/ChirpStack/configuration_files_for_AU915/chirpstack-network-server.toml adailsilva@192.168.1.2:/home/adailsilva/Apps/ChirpStack/chirpstack-network-server/
+
+
+# Configuration
+sudo nano /etc/chirpstack-network-server/chirpstack-network-server.toml
+
+
+# Example commands
+
+A few example commands that you can run:
+
+# install development requirements
+make dev-requirements
+
+# cleanup workspace
+make clean
+
+# run the tests
+make test
+
+# compile
+make build
+
+# compile snapshot builds for supported architectures
+make snapshot
+
+
+
+# Creating an user and database
+sudo -u postgres psql
+create role chirpstack_ns with login password '@Hacker101';
+create database chirpstack_ns with owner chirpstack_ns;
+\q
+
+# Testing database login
+psql -h localhost -U chirpstack_ns -W chirpstack_ns
+\q
+
+
+
+# Redis configuration:
+redis-server --version
+Redis server v=5.0.7 sha=00000000:0 malloc=jemalloc-5.2.1 bits=64 build=636cde3b5c7a3923
+
+
+To get the version of Redis server:
+redis-server -v
+
+To get the version of Redis client:
+redis-cli -v
+
+
+# Log in to Redis:
+redis-cli
+127.0.0.1:6379>
+
+# Test:
+127.0.0.1:6379> PING
+PONG
+
+
+# Temporarily set the redis password:
+127.0.0.1:6379> CONFIG SET requirepass '@Hacker101'
+
+127.0.0.1:6379> QUIT
+
+
+# Permanently set the redis password
+# Setup Password using redis config file.
+
+Step 1 :
+# Open the redis config file using nano:
+sudo nano /etc/redis/redis.conf
+
+# Find the line starts with requirepass, Uncomment the line and set a new password:
+# requirepass yourpassword
+
+-to-
+
+requirepass @Hacker101
+
+QUIT -
+
+sudo reboot now
+
+
+# Test:
+redis-cli
+127.0.0.1:6379> PING
+(error) NOAUTH Authentication required.
+
+# Log in to Redis:
+127.0.0.1:6379> AUTH @Hacker101
+OK
+127.0.0.1:6379> PING
+PONG
+
+127.0.0.1:6379> QUIT
+
+redis-cli -h localhost -p 6379 -a @Hacker101 ping
+
+
+
+sudo chmod +x /home/adailsilva/Apps/ChirpStack/chirpstack-network-server/build/chirpstack-network-server
+
+
+Create script for service:
+[SCRIPT]
+sudo nano /etc/systemd/system/chirpstack-network-server.service
+
+To add:
+[Unit]
+Description=ChirpStack Network Server is an open-source LoRaWAN network-server.
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+ExecStart=/home/adailsilva/Apps/ChirpStack/chirpstack-network-server/build/chirpstack-network-server
+WorkingDirectory=/home/adailsilva/Apps/ChirpStack/chirpstack-network-server/build
+User=adailsilva
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=%n
+
+[Install]
+WantedBy=multi-user.target
+
+
+# Change service file owner:
+sudo chown root:root /etc/systemd/system/chirpstack-network-server.service
+sudo chmod 644 /etc/systemd/system/chirpstack-network-server.service
+
+
+# Restart Systemd
+sudo systemctl daemon-reload
+
+
+# Control of the created service:
+# Starting ChirpStack Network Server
+sudo systemctl start chirpstack-network-server.service
+sudo systemctl enable chirpstack-network-server.service
+sudo systemctl status chirpstack-network-server.service
+sudo journalctl -f -n 100 -u chirpstack-network-server.service
+
+Or:
+
+init.d
+sudo /etc/init.d/chirpstack-network-server.service [start|stop|restart|status]
+
+systemd
+sudo systemctl [start|stop|restart|status] chirpstack-network-server.service
+
+
+# ChirpStack Network Server log output
+
+init.d
+All logs are written to /var/log/chirpstack-network-server/chirpstack-network-server.log. To view and follow this logfile:
+tail -f /var/log/chirpstack-network-server/chirpstack-network-server.log
+
+systemd
+journalctl -u chirpstack-network-server.service -f -n 50
+
+
+sudo tail -f /var/log/syslog
+
+
+# View MQTT traffic all with Mosquitto Client
+mosquitto_sub -v -t "#" -h localhost -p 1883 -u "adailsilva" -P "@Hacker101"
+
+
+
+
+
+### Application Server
+
+Source
+
+Source-code can be found at https://github.com/brocaar/chirpstack-application-server.
+
+git clone https://github.com/brocaar/chirpstack-application-server.git
+
+mkdir ~/Apps
+cd Apps/
+mkdir ChirpStack
+mv ~/chirpstack-application-server ~/Apps/ChirpStack/
+cd ~/Apps/ChirpStack/chirpstack-application-server/
+
+
+## Building
+
+
+# With Docker
+
+The easiest way to get started is by using the provided Docker Compose environment. To start a bash shell within the docker-compose environment, execute the following command from the root of this project:
+
+docker-compose run --rm chirpstack-application-server bash
+
+
+# Without Docker
+
+It is possible to build ChirpStack Application Server without Docker. However this requires to install a couple of dependencies (depending your platform, there might be pre-compiled packages available):
+
+
+# Go
+Make sure you have Go installed (1.11+). As ChirpStack Application Server uses Go modules, the repository must be cloned outside the $GOPATH.
+
+
+# Node.js
+Make sure you have a recent version of Node.js installed, as Node.js is used to compile the front-end code.
+
+
+# Go protocol buffer support
+Install the C++ implementation of protocol buffers and Go support by following the GO support for Protocol Buffers installation instructions.
+
+
+cd ~/Apps/ChirpStack/chirpstack-application-server/
+
+
+# Copying the configuration file for use after compilation
+scp /home/adailsilva/Apps/ChirpStack/configuration_files_for_AU915/chirpstack-application-server.toml adailsilva@192.168.1.2:/home/adailsilva/Apps/ChirpStack/chirpstack-application-server/
+
+
+# Configuration
+sudo nano /etc/chirpstack-application-server/chirpstack-application-server.toml
+
+# An other required setting you must change is application_server.external_api.jwt_secret
+Generation and Get Key
+openssl rand -base64 32
+
+
+# Example commands
+
+A few example commands that you can run:
+
+# install all requirements
+make dev-requirements ui-requirements
+
+
+
+# To Raspbian ARMv7 (armv7l):
+sudo apt -y install nodejs
+sudo apt -y install npm
+
+Or:
+wget https://nodejs.org/download/release/v14.17.0/node-v14.17.0-linux-armv7l.tar.gz
+
+Next, extract the tarball to /usr/local directory.
+
+sudo tar -C /usr/local -xzf node-v14.17.0-linux-armv7l.tar.gz
+
+
+Add the Node.js binary path to .bashrc file /etc/profile (for a system-wide installation).
+
+sudo nano /etc/profile
+
+Add at the end of the file:
+export PATH=$PATH:/usr/local/node-v14.17.0-linux-armv7l/bin
+
+
+After adding the PATH environment variable, you need to apply changes immediately by running the following command.
+source ~/.bashrc
+
+sudo reboot now
+
+ssh adailsilva@192.168.1.101
+
+Now verify the installation by simply running the go version in the terminal.
+node -v
+node version
+npx -v
+npx version
+npm -v
+npm version
+
+
+
+# cleanup workspace
+make clean
+
+# run the tests
+make test
+
+# compile (this will also compile the ui and generate the static files)
+make build
+
+# compile snapshot builds for supported architectures (this will also compile the ui and generate the static files)
+make snapshot
+
+# If you have compilation errors try to run the following commands on another connection with this machine:
+cd chirpstack-application-server/ui
+npx browserslist --update-db
+npx browserslist@latest --update-db
+
+
+
+# Creating an user and database
+sudo -u postgres psql
+create role chirpstack_as with login password '@Hacker101';
+create database chirpstack_as with owner chirpstack_as;
+\q
+
+# pq_trgm and hstore extension
+sudo -u postgres psql
+\c chirpstack_as
+create extension pg_trgm;
+create extension hstore;
+\q
+
+# Testing database login
+psql -h localhost -U chirpstack_as -W chirpstack_as
+\q
+
+
+
+# Redis configuration:
+redis-server --version
+Redis server v=5.0.7 sha=00000000:0 malloc=jemalloc-5.2.1 bits=64 build=636cde3b5c7a3923
+
+
+To get the version of Redis server:
+redis-server -v
+
+To get the version of Redis client:
+redis-cli -v
+
+
+# Log in to Redis:
+redis-cli
+127.0.0.1:6379>
+
+# Test:
+127.0.0.1:6379> PING
+PONG
+
+
+# Temporarily set the redis password:
+127.0.0.1:6379> CONFIG SET requirepass '@Hacker101'
+
+127.0.0.1:6379> QUIT
+
+
+# Permanently set the redis password
+# Setup Password using redis config file.
+
+Step 1 :
+# Open the redis config file using nano:
+sudo nano /etc/redis/redis.conf
+
+# Find the line starts with requirepass, Uncomment the line and set a new password:
+# requirepass yourpassword
+
+-to-
+
+requirepass @Hacker101
+
+QUIT -
+
+sudo reboot now
+
+
+# Test:
+redis-cli
+127.0.0.1:6379> PING
+(error) NOAUTH Authentication required.
+
+# Log in to Redis:
+127.0.0.1:6379> AUTH @Hacker101
+OK
+127.0.0.1:6379> PING
+PONG
+
+127.0.0.1:6379> QUIT
+
+redis-cli -h localhost -p 6379 -a @Hacker101 ping
+
+
+
+sudo chmod +x /home/adailsilva/Apps/ChirpStack/chirpstack-application-server/build/chirpstack-application-server
+
+
+Create script for service:
+[SCRIPT]
+sudo nano /etc/systemd/system/chirpstack-application-server.service
+
+To add:
+[Unit]
+Description=ChirpStack Application Server is an open-source LoRaWAN application-server.
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+ExecStart=/home/adailsilva/Apps/ChirpStack/chirpstack-application-server/build/chirpstack-application-server
+WorkingDirectory=/home/adailsilva/Apps/ChirpStack/chirpstack-application-server/build
+User=adailsilva
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=%n
+
+[Install]
+WantedBy=multi-user.target
+
+
+# Change service file owner:
+sudo chown root:root /etc/systemd/system/chirpstack-application-server.service
+sudo chmod 644 /etc/systemd/system/chirpstack-application-server.service
+
+
+# Restart Systemd
+sudo systemctl daemon-reload
+
+
+# Control of the created service:
+# Starting ChirpStack Application Server
+sudo systemctl start chirpstack-application-server.service
+sudo systemctl enable chirpstack-application-server.service
+sudo systemctl status chirpstack-application-server.service
+sudo journalctl -f -n 100 -u chirpstack-application-server.service
+
+Or:
+
+init.d
+sudo /etc/init.d/chirpstack-application-server.service [start|stop|restart|status]
+
+systemd
+sudo systemctl [start|stop|restart|status] chirpstack-application-server.service
+
+
+# ChirpStack Application Server log output
+
+init.d
+All logs are written to /var/log/chirpstack-application-server/chirpstack-application-server.log. To view and follow this logfile:
+tail -f /var/log/chirpstack-application-server/chirpstack-application-server.log
+
+systemd
+journalctl -u chirpstack-application-server.service -f -n 50
+
+
+sudo tail -f /var/log/syslog
+
+
+# Accessing ChirpStack Application Server
+If a TLS certificate has been configured (optional), use https:// else use the http:// option (default).
+
+HTTP
+Web-interface http://localhost:8080/
+API http://localhost:8080/api
+HTTPS
+Web-interface https://localhost:8080/
+API https://localhost:8080/api
+
+
+# View MQTT traffic all with Mosquitto Client
+mosquitto_sub -v -t "#" -h localhost -p 1883 -u "adailsilva" -P "@Hacker101"
+
+
+
+
+

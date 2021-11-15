@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "7fd0806d-050f-4fd9-b82e-abb5b4d2b7bf",
+		"name": "ProIoT-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Downlink Class A and C",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "rxuDr7BM5jGgWS8JlkE8sn2AE3CTc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"devEUI\" : \"0012f80000000cf9\",\n\t\"payload\" : \"QWRhaWxTaWx2YQ==\",\n\t\"port\" : \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://things.proiot.network/stream/downlink",
+					"protocol": "http",
+					"host": [
+						"things",
+						"proiot",
+						"network"
+					],
+					"path": [
+						"stream",
+						"downlink"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

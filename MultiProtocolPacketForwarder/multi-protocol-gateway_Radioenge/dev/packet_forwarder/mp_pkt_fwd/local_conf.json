@@ -1,0 +1,107 @@
+{
+	"gateway_conf": {
+
+        /* Change with default server address/ports, or overwrite in local_conf.json */
+	"gateway_ID": "B827EBFFFE40DCC6",
+
+	/* Forward only valid packets */
+        "forward_crc_valid": true,
+        "forward_crc_error": false,
+        "forward_crc_disabled": false,
+	"keepalive_interval": 10,
+	"stat_interval": 30,
+	"push_timeout_ms": 100,
+        "autoquit_threshold": 0,
+
+	/* Beaconing parameters */
+	"beacon": false,
+	"beacon_period": 128,
+	"beacon_freq_hz": 916800000,
+	"beacon_freq_nb": 1,
+	"beacon_freq_step": 0,
+	"beacon_datarate": 9,
+	"beacon_bw_hz": 125000,
+	"beacon_power": 14,
+	"beacon_infodesc": 0,
+
+        /* Devices */
+        "gps": true,
+	"monitor": false,
+	"upstream": true,
+	"downstream": true,
+        "ghoststream": false,
+        "radiostream": true,
+        "statusstream": true,
+
+	/* GPS configuration */
+	"gps_tty_path": "/dev/ttyS0",
+        "fake_gps": false,
+
+        /* GPS reference coordinates */
+	"ref_latitude": -5.06988909,
+	"ref_longitude": -42.80246848,
+	"ref_altitude": 98,
+
+	/* DEBUG */
+	"debug_spi": false,
+	"debug_reg": true,
+	"debug_hal": true,
+	"debug_gps": false,
+	"debug_lbt": true,
+	"debug_pkt_fwd": true,
+	"debug_jit": true,
+	"debug_jit_error": true,
+	"debug_beacon": true,
+	"debug_log": true,
+
+	/* node server, (for standard server, fall back for poly packet & multi protocol packet server) */
+	"server_address": "thethings.meshed.com.au",
+	"serv_port_up": 1700,
+	"serv_port_down": 1700,
+
+	/* node servers for poly packet server (max 4 enabled, rest is ignored) */
+	"servers": [{
+		"server_address": "localhost",
+		"serv_port_up": 1700,
+		"serv_port_down": 1700,
+		"serv_enabled": false },
+		{
+		"server_address": "iot.semtech.com",
+		"serv_port_up": 1680,
+		"serv_port_down": 1680,
+		"serv_enabled": false },
+		{
+		"server_address": "thethings.meshed.com.au",
+		"serv_port_up": 1700,
+		"serv_port_down": 1700,
+		"serv_enabled": true },
+		{
+		"server_address": "aws.com",
+		"serv_port_up": 1700,
+		"serv_port_down": 1700,
+		"serv_enabled": false } ],
+	/* Ghost configuration */
+	"ghost_address": "127.0.0.1",
+	"ghost_port": 1918,
+
+	/* Monitor configuration */
+	"monitor_address": "127.0.0.1",
+	"monitor_port": 2008,
+	"ssh_path": "/usr/bin/ssh",
+	"ssh_port": 22,
+        "http_port": 80,
+
+	"ngrok_path": "/usr/bin/ngrok",
+	"system_calls": ["df -m","free -h","uptime","who -a","uname -a"],
+
+        /* Platform definition, put a asterix here for the system value, max 24 chars. */
+        "platform": "Radioenge",
+
+        /* Email of gateway operator, max 40 chars*/
+        "contact_email": "adail101@hotmail.com",
+
+        /* Public description of this device, max 64 chars */
+	"description": "Radioenge RPi3-RD43HATGPS (Multi Channel)"
+	}
+}
+

@@ -1,0 +1,114 @@
+Commands to install ChirpStack
+
+sudo apt -y install mosquitto mosquitto-clients redis-server redis-tools postgresql
+sudo -u postgres psql
+create role chirpstack_ns with login password '@Hacker101';
+create role chirpstack_as with login password '@Hacker101';
+create database chirpstack_ns with owner chirpstack_ns;
+create database chirpstack_as with owner chirpstack_as;
+
+\c chirpstack_as
+create extension pg_trgm;
+create extension hstore;
+\q
+
+sudo apt -y install apt-transport-https dirmngr
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1CE2AFD36DBCCA00
+sudo echo "deb https://artifacts.chirpstack.io/packages/3.x/deb stable main" | sudo tee /etc/apt/sources.list.d/chirpstack.list
+sudo apt-get update
+
+sudo apt -y install chirpstack-gateway-bridge
+sudo nano /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml
+sudo systemctl start chirpstack-gateway-bridge.service
+sudo systemctl enable chirpstack-gateway-bridge.service
+sudo systemctl status chirpstack-gateway-bridge.service
+sudo journalctl -f -n 100 -u chirpstack-gateway-bridge.service
+
+sudo apt -y install chirpstack-network-server
+sudo nano /etc/chirpstack-network-server/chirpstack-network-server.toml
+sudo systemctl start chirpstack-network-server.service
+sudo systemctl enable chirpstack-network-server.service
+sudo systemctl status chirpstack-network-server.service
+sudo journalctl -f -n 100 -u chirpstack-network-server.service
+
+sudo apt -y install chirpstack-application-server
+sudo nano /etc/chirpstack-application-server/chirpstack-application-server.toml
+
+openssl rand -base64 32
+Get Key
+
+sudo systemctl start chirpstack-application-server.service
+sudo systemctl enable chirpstack-application-server.service
+sudo systemctl status chirpstack-application-server.service
+sudo journalctl -f -n 100 -u chirpstack-application-server.service
+
+
+
+# Redis configuration:
+redis-server --version
+Redis server v=5.0.7 sha=00000000:0 malloc=jemalloc-5.2.1 bits=64 build=636cde3b5c7a3923
+
+
+To get the version of Redis server:
+redis-server -v
+
+To get the version of Redis client:
+redis-cli -v
+
+
+# Log in to Redis:
+redis-cli
+127.0.0.1:6379>
+
+# Test:
+127.0.0.1:6379> PING
+PONG
+
+
+# Temporarily set the redis password:
+127.0.0.1:6379> CONFIG SET requirepass '@Hacker101'
+
+127.0.0.1:6379> QUIT
+
+
+# Permanently set the redis password
+# Setup Password using redis config file.
+
+Step 1 :
+# Open the redis config file using nano:
+sudo nano /etc/redis/redis.conf
+
+# Find the line starts with requirepass, Uncomment the line and set a new password:
+# requirepass yourpassword
+
+-to-
+
+requirepass @Hacker101
+
+QUIT -
+
+sudo reboot now
+
+
+# Test:
+redis-cli
+127.0.0.1:6379> PING
+(error) NOAUTH Authentication required.
+
+# Log in to Redis:
+127.0.0.1:6379> AUTH @Hacker101
+OK
+127.0.0.1:6379> PING
+PONG
+
+127.0.0.1:6379> QUIT
+
+redis-cli -h localhost -p 6379 -a @Hacker101 ping
+
+
+
+# MQTT test with Mosquitto:
+mosquitto_sub -v -t "#" -h localhost -p 1883 -u "adailsilva" -P "@Hacker101"
+
+
+

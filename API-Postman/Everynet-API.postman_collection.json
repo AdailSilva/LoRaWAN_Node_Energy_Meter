@@ -1,0 +1,969 @@
+{
+	"info": {
+		"_postman_id": "35d3573f-c656-4090-9bb0-839b5abc8826",
+		"name": "Everynet-API",
+		"description": "Integration of the Everynet networkserver with IoT-Monitor project using one beteween Back-end  in Java (Spring Framework).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Devices",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"dev_eui\": \"0012f80000000cf9\",\n  \"app_eui\": \"3bc8d41c49ab4a96\",\n  \"tags\": [],\n  \"activation\": \"ABP\",\n  \"encryption\": \"NS\",\n  \"dev_addr\": \"16e1cef3\",\n  \"nwkskey\": \"c48285e746aefe6b74c8a0ecd653898b\",\n  \"appskey\": \"798daf8318c7b4736a59718b939c47e1\",\n  \"dev_class\": \"A\",\n  \"counters_size\": 4,\n  \"adr\": {\n    \"tx_power\": null,\n    \"datarate\": null,\n    \"mode\": \"on\"\n  },\n  \"band\": \"LA915-928A\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/devices?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"devices"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Devices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/devices?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"devices"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Devices By dev_eui",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/devices/0012f80000000cf9?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"devices",
+						"0012f80000000cf9"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Devices",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"dev_eui\":\"0012f80000000cf9\",\n   \"app_eui\":\"3bc8d41c49ab4a96\",\n   \"tags\":[\n   \t\"test\",\n   \t\"iot_monitor\"\n   ],\n   \"activation\":\"ABP\",\n   \"encryption\":\"NS\",\n   \"dev_addr\":\"16e1cef3\",\n   \"nwkskey\":\"c48285e746aefe6b74c8a0ecd653898b\",\n   \"appskey\":\"798daf8318c7b4736a59718b939c47e1\",\n   \"dev_class\":\"A\",\n   \"counters_size\":4,\n   \"adr\":{\n      \"tx_power\":null,\n      \"datarate\":null,\n      \"mode\":\"on\"\n   },\n   \"band\":\"LA915-928A\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/devices/0012f80000000cf9?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"devices",
+						"0012f80000000cf9"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Devices",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/devices/0012f80000000cf9?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"devices",
+						"0012f80000000cf9"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bands (internal to Devices)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/bands?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"bands"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bands By name (internal to Devices)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/bands/LA915-928A?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"bands",
+						"LA915-928A"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filters",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"New Filter Creation\",\n  \"applications\": [],\n  \"devices\": [\n    \"cb105012c80769f7\"\n  ],\n  \"gateways\": [],\n  \"types\": [\n    \"uplink\",\n    \"error\"\n  ],\n  \"tags\": [\n    \"NEW\",\n    \"device\",\n    \"example\",\n    \"Everynet\"\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/filters?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"filters"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/filters?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"filters"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filters By id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/filters/5eb734ddba9198bb22f4d20c?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"filters",
+						"5eb734ddba9198bb22f4d20c"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filters",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"Nova criação de filtro - Alteração\",\n  \"applications\": [],\n  \"devices\": [\n    \"cb105012c80769f7\"\n  ],\n  \"gateways\": [],\n  \"types\": [\n    \"uplink\",\n    \"error\"\n  ],\n  \"tags\": [\n    \"NEW\",\n    \"device\",\n    \"example\",\n    \"Everynet\"\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/filters/5eb734ddba9198bb22f4d20c?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"filters",
+						"5eb734ddba9198bb22f4d20c"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filters",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/filters/5eb734ddba9198bb22f4d20c?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"filters",
+						"5eb734ddba9198bb22f4d20c"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Connections",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/connections?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"connections"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Connections By id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/connections/5eb735a46c1837f2550a8311?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"connections",
+						"5eb735a46c1837f2550a8311"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Connections",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/connections/5eb735a46c1837f2550a8311?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"connections",
+						"5eb735a46c1837f2550a8311"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users (Acesso negado)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"AdailSilva\",\n  \"email\": \"adailsilva@hotmail.com\",\n  \"permissions\": {\n    \"devices\": {\n      \"*\": [\n        \"create\",\n        \"read\"\n      ]\n    },\n    \"gateways\": {\n      \"*\": []\n    },\n    \"filters\": {\n      \"*\": []\n    },\n    \"users\": {\n      \"*\": [\n        \"update\",\n        \"create\",\n        \"read\"\n      ]\n    },\n    \"keys\": {\n      \"*\": [\n        \"read\"\n      ]\n    },\n    \"applications\": {\n      \"*\": []\n    },\n    \"connections\": {\n      \"*\": []\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/users?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"users"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/users?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"users"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users By id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/users/5e78b0e02563900001b23c98?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"users",
+						"5e78b0e02563900001b23c98"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users (Acesso negado)",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"AdailSilva\",\n  \"email\": \"adail101@hotmail.com\",\n  \"permissions\": {\n    \"devices\": {\n      \"*\": [\n        \"create\",\n        \"read\"\n      ]\n    },\n    \"gateways\": {\n      \"*\": []\n    },\n    \"filters\": {\n      \"*\": []\n    },\n    \"users\": {\n      \"*\": [\n        \"update\",\n        \"create\",\n        \"read\"\n      ]\n    },\n    \"keys\": {\n      \"*\": [\n        \"read\"\n      ]\n    },\n    \"applications\": {\n      \"*\": []\n    },\n    \"connections\": {\n      \"*\": []\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/users/5e78b0e02563900001b23c98?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"users",
+						"5e78b0e02563900001b23c98"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users (Acesso negado)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/users/5e78b0e02563900001b23c98?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"users",
+						"5e78b0e02563900001b23c98"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth (Users)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"reinaldo@credishop.com.br\",\n  \"password\": \"@lorawan123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/auth?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout (Users)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/logout?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"logout"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Keys",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"Exemplo de criação de chave\",\n  \"permissions\": {\n    \"applications\": {\n      \"*\": []\n    },\n    \"connections\": {\n      \"*\": [\n        \"read\",\n        \"delete\"\n      ]\n    },\n    \"devices\": {\n      \"*\": [\n        \"read\",\n        \"create\",\n        \"delete\",\n        \"update\",\n        \"data\"\n      ]\n    },\n    \"filters\": {\n      \"*\": [\n        \"read\",\n        \"create\",\n        \"delete\",\n        \"update\"\n      ]\n    },\n    \"gateways\": {\n      \"*\": []\n    },\n    \"keys\": {\n      \"*\": [\n        \"read\",\n        \"create\",\n        \"delete\",\n        \"update\"\n      ]\n    },\n    \"users\": {\n      \"*\": [\n        \"read\",\n        \"create\",\n        \"delete\",\n        \"update\"\n      ]\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/keys?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"keys"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Keys",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/keys?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"keys"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Keys  By id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/keys/5eb723bfba9198bb22f47e07?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"keys",
+						"5eb723bfba9198bb22f47e07"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Keys",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"Exemplo de criação de chaves - Alteração\",\n  \"permissions\": {\n    \"applications\": {\n      \"*\": []\n    },\n    \"connections\": {\n      \"*\": [\n        \"read\",\n        \"delete\"\n      ]\n    },\n    \"devices\": {\n      \"*\": [\n        \"read\",\n        \"create\",\n        \"delete\",\n        \"update\",\n        \"data\"\n      ]\n    },\n    \"filters\": {\n      \"*\": [\n        \"read\",\n        \"create\",\n        \"delete\",\n        \"update\"\n      ]\n    },\n    \"gateways\": {\n      \"*\": []\n    },\n    \"keys\": {\n      \"*\": [\n        \"read\",\n        \"create\",\n        \"delete\",\n        \"update\"\n      ]\n    },\n    \"users\": {\n      \"*\": [\n        \"read\",\n        \"create\",\n        \"delete\",\n        \"update\"\n      ]\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/keys/5eb723bfba9198bb22f47e07?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"keys",
+						"5eb723bfba9198bb22f47e07"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Keys",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/keys/5eb723bfba9198bb22f47e07?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"keys",
+						"5eb723bfba9198bb22f47e07"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gerenciamento - Consumo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/usage/data.json?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1&from=20200301000000&to=20200510000000&group_time=day",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"usage",
+						"data.json"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						},
+						{
+							"key": "from",
+							"value": "20200301000000"
+						},
+						{
+							"key": "to",
+							"value": "20200510000000"
+						},
+						{
+							"key": "group_time",
+							"value": "day"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teste Cadastro device OTAA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"activation\":\"OTAA\",\n   \"adr\":{\n      \"datarate\":null,\n      \"enabled\":false,\n      \"mode\":\"on\",\n      \"tx_power\":null\n   },\n   \"app_eui\":\"3bc8d41c49ab4a96\",\n   \"app_key\":\"e607a193bb2cbe4fc83519296b2c0cc5\",\n   \"appskey\":null,\n   \"band\":\"LA915-928A\",\n   \"block_downlink\":false,\n   \"block_uplink\":false,\n   \"counter_down\":null,\n   \"counter_up\":null,\n   \"counters_size\":4,\n   \"dev_addr\":null,\n   \"dev_class\":\"A\",\n   \"dev_eui\":\"0012f80000000cf2\",\n   \"encryption\":\"NS\",\n   \"geolocation\":{\n      \"lat\":null,\n      \"lng\":null,\n      \"method\":null,\n      \"precision\":null,\n      \"quality\":null\n   },\n   \"last_activity\":null,\n   \"last_join\":null,\n   \"locked\":false,\n   \"nwkskey\":null,\n   \"rx1\":{\n      \"current_delay\":null,\n      \"delay\":5,\n      \"status\":\"set\"\n   },\n   \"rx2\":{\n      \"force\":false\n   },\n   \"strict_counter\":false,\n   \"tags\":[\n      \"OTAA\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ns.atc.everynet.io/api/v1.0/devices?access_token=3d1c4f9bc99545b28e4a4a64ebda34e1",
+					"protocol": "https",
+					"host": [
+						"ns",
+						"atc",
+						"everynet",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"devices"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3d1c4f9bc99545b28e4a4a64ebda34e1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
